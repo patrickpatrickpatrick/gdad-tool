@@ -98,6 +98,13 @@ const SkillsForm = ({
         </>
     </>)
   }
+  <button
+    onClick={(e) => {
+      console.log(savedSkills)
+    }}
+  >
+    SUBMIT
+  </button>
   </form>
 </>
 

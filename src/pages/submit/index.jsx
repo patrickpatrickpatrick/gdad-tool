@@ -12,10 +12,11 @@ const Submit = ({
   setJobFam,
   setRole,
   setRoleLevel,
+  savedSkills,
+  setSavedSkills,
 }) => {
   const [section, setSection] = useState('specialismSpecificationForm')
   const [skills, setSkills] = useState([]);
-  const [savedSkills, setSavedSkills] = useState({});
 
   useEffect(() => {
     setSkills(allSpecialties.filter((specialty) =>

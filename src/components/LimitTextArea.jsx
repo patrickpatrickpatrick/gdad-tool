@@ -1,5 +1,4 @@
 import { TextArea } from 'govuk-react';
-import { useEffect } from 'react'
 
 const LimitTextArea = ({
   label,

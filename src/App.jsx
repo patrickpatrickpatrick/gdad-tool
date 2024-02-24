@@ -23,6 +23,7 @@ const App = () => {
   const [jobFam, setJobFam] = useState("");
   const [role, setRole] = useState("");
   const [roleLevel, setRoleLevel] = useState("");
+  const [savedSkills, setSavedSkills] = useState({});
 
   useEffect(() => {
     if (typeof google !== 'undefined') {
@@ -59,6 +60,8 @@ const App = () => {
                 setJobFam={setJobFam}
                 setRole={setRole}
                 setRoleLevel={setRoleLevel}
+                savedSkills={savedSkills}
+                setSavedSkills={setSavedSkills}
               />
             }/>
             <Route path="/validate" element={<Validate />}/>
