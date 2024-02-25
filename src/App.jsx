@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Page, LoadingBox } from 'govuk-react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 
 import CustomNav from './components/CustomNav';
 import { Submit, Validate } from './pages';
@@ -13,6 +17,8 @@ const processData = (d, dict) => {
 
   setLoading(false);
   setRoles(framework);
+
+  // window.history.pushState('/')
 }
 
 const App = () => {
@@ -44,11 +50,10 @@ const App = () => {
         setRoles(data);
       })
     }
-  }, []);
 
-  // useEffect(() => {
-  //   if (lo)
-  // }, [loading])
+    // to make it work :(
+    window.history.pushState({}, "", '/')    
+  }, []);
 
   return <Router>
     <Page header={<CustomNav />}>

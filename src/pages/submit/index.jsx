@@ -19,7 +19,7 @@ const Submit = ({
 }) => {
   const [section, setSection] = useState('specialismSpecificationForm')
   const [skills, setSkills] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     setSkills(allSpecialties.filter((specialty) =>
@@ -29,9 +29,10 @@ const Submit = ({
     ))
   }, [roleLevel])
 
-  useEffect(() => {
-    navigate('/')
-  }, [loading])
+  // useEffect(() => {
+  //   // console.log('navigate')
+  //   // navigate('/')
+  // }, [loading])
 
   return <>
     {
