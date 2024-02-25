@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Page, LoadingBox } from 'govuk-react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate
+} from "react-router-dom";
 
 import CustomNav from './components/CustomNav';
 import { Submit, Validate } from './pages';
@@ -25,6 +30,8 @@ const App = () => {
   const [roleLevel, setRoleLevel] = useState("");
   const [savedSkills, setSavedSkills] = useState({});
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (typeof google !== 'undefined') {
       google.script.run
@@ -46,7 +53,15 @@ const App = () => {
     }
   }, []);
 
-  return <Router>
+  useEffect(() => {
+    console.log(loading)
+    if (!loading) {
+      console.log('nav')
+      // navigate("/", { replace: true })
+    }
+  }, [loading])
+
+  return
     <Page header={<CustomNav />}>
       <div aria-live="polite" aria-busy={loading}>
         <LoadingBox loading={loading}>
@@ -69,7 +84,6 @@ const App = () => {
         </LoadingBox>
       </div>
     </Page>
-  </Router>
 }
 
 export default App
