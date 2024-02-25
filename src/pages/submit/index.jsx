@@ -1,5 +1,6 @@
 import { Select } from 'govuk-react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import SpecialismSpecificationForm from './SpecialismSpecificationForm';
 import SkillsForm from './SkillsForm';
@@ -14,9 +15,11 @@ const Submit = ({
   setRoleLevel,
   savedSkills,
   setSavedSkills,
+  loading
 }) => {
   const [section, setSection] = useState('specialismSpecificationForm')
   const [skills, setSkills] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setSkills(allSpecialties.filter((specialty) =>
@@ -25,6 +28,10 @@ const Submit = ({
       specialty['RoleLevelFILTER'] == roleLevel
     ))
   }, [roleLevel])
+
+  useEffect(() => {
+    navigate('/')
+  }, [loading])
 
   return <>
     {
