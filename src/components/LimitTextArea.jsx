@@ -9,7 +9,8 @@ const LimitTextArea = ({
 
   return <>
     <TextArea input={{
-      onChange
+      onChange,
+      value,
     }}>
      {label}
     </TextArea>

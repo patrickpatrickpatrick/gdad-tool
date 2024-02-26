@@ -1,7 +1,7 @@
 import { getUniqElements } from './../../util';
 
-import { Button } from 'govuk-react';
-import { useState, useEffect } from 'react';
+import { Button, Paragraph } from 'govuk-react';
+import { useState, useEffect, useRef } from 'react';
 
 import SpecialismSelect from './../../components/SpecialismSelect';
 
@@ -15,49 +15,80 @@ const SpecialismSpecificationForm = ({
   setJobFam,
   setRole,
   setRoleLevel,
+  loading,
 }) => {
   const allJobFamilies = getUniqElements(allSpecialties, 'JobfamilyFILTER');
-  const [allRoles, setAllRoles] = useState([]);
-  const [allRoleLevels, setAllRoleLevels] = useState([]);
+  const [allRoles, setAllRoles] = useState(getUniqElements(allSpecialties, 'RoleFILTER'));
+  const [allRoleLevels, setAllRoleLevels] = useState(getUniqElements(allSpecialties, 'RoleLevelFILTER'));
+
+  const [localJobFam, setLocalJobFam ] = useState("");
+  const [localRole, setLocalRole ] = useState("");
+  const [localRoleLevel, setLocalRoleLevel ] = useState("");
+
+  const jobFamRef = useRef();
+  const roleRef = useRef();
+  const roleLevelRef = useRef();
 
   useEffect(() => {
-    setRole("");
-    setRoleLevel("");
-    setAllRoles(getUniqElements(allSpecialties.filter(x => x['JobfamilyFILTER'] == jobFam), 'RoleFILTER'));
-  }, [jobFam])
+    setLocalJobFam(jobFam)
+    setLocalRole(role)
+    setLocalRoleLevel(roleLevel)
+  }, [role, roleLevel, jobFam])
 
   useEffect(() => {
-    setRoleLevel("");
-    setAllRoleLevels(getUniqElements(allSpecialties.filter(x => x['RoleFILTER'] == role), 'RoleLevelFILTER'));
-  }, [role])
+    if (localJobFam !== jobFam) {
+      setLocalRole("")
+      setLocalRoleLevel("")    
+    }
+
+    jobFamRef.current.value = localJobFam
+    setAllRoles(getUniqElements(allSpecialties.filter(x => x['JobfamilyFILTER'] == localJobFam), 'RoleFILTER'));
+  }, [localJobFam])
+
+  useEffect(() => {
+    if (localRole !== role) {
+      setRoleLevel("");
+    }
+
+    roleRef.current.value = localRole;
+
+    setAllRoleLevels(getUniqElements(allSpecialties.filter(x => x['RoleFILTER'] == localRole), 'RoleLevelFILTER'));
+  }, [localRole, allRoles])
+
+  useEffect(() => {
+    roleLevelRef.current.value = localRoleLevel;
+  }, [localRoleLevel, allRoleLevels])
 
   return (<form>
-    <p>
+    <Paragraph>
       Your Job Family, Role and Role Level
-    </p>
+    </Paragraph>
 
     <SpecialismSelect
       label="Job Family"
-      value={jobFam}
-      setValue={setJobFam}
+      value={localJobFam}
+      setValue={setLocalJobFam}
       options={allJobFamilies}
+      inputRef={jobFamRef}
       disabled={false}
     />
 
     <SpecialismSelect
       label="Role"
-      value={role}
-      setValue={setRole}
+      value={localRole}
+      setValue={setLocalRole}
       options={allRoles}
-      disabled={!jobFam.length}
+      inputRef={roleRef}
+      disabled={!localJobFam.length}
     />
 
     <SpecialismSelect
       label="Role Level"
-      value={roleLevel}
-      setValue={setRoleLevel}
+      value={localRoleLevel}
+      setValue={setLocalRoleLevel}
       options={allRoleLevels}
-      disabled={!role.length}
+      inputRef={roleLevelRef}
+      disabled={!localRole.length}
     />
 
     <Button

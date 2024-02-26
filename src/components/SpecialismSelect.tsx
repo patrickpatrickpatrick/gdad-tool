@@ -16,7 +16,8 @@ const SpecialismSelect = ({
   setValue,
   value,
   disabled,
-  options
+  options,
+  inputRef,
 }) => <Select
   label={label}
   value={value}
@@ -24,6 +25,7 @@ const SpecialismSelect = ({
     onChange: (e) => {
       setValue(e.target.value);
     },
+    ref: inputRef,
     disabled: disabled
   }}
 >

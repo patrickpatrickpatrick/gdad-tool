@@ -1,4 +1,14 @@
-import { Heading, Select, TextArea } from 'govuk-react';
+import { 
+  Heading,
+  Select,
+  TextArea,
+  SectionBreak,
+  Paragraph,
+  Button,
+  Fieldset,
+  Label,
+  LabelText,
+} from 'govuk-react';
 
 import LimitTextArea from './../../components/LimitTextArea';
 import { updateSavedSkills } from './../../util';
@@ -9,6 +19,8 @@ const SkillsForm = ({
   skills,
   savedSkills,
   setSavedSkills,
+  setSection,
+  saveSkills
 }) => <>
   <Heading
     size="LARGE"
@@ -17,12 +29,15 @@ const SkillsForm = ({
     `Skills for ${role}`
   }
   </Heading>
-  <p>
+  <Paragraph>
     {
       `You have currently selected ${roleLevel} as your role level.`
     }
-  </p>
-  <hr />
+  </Paragraph>
+  <a href="" onClick={() => setSection("specialismSpecificationForm")}>
+    Reselect role level
+  </a>
+  <SectionBreak level="LARGE" visible />
   <form>
   {
     skills.map(({
@@ -30,20 +45,25 @@ const SkillsForm = ({
       SkillLevel,
       SkillLevelDescription,
       SkillNameFILTER
-    }) => <>
+    }) => <Fieldset
+      key={SkillLevel}
+    >
       <>
         <h2>{SkillNameFILTER}</h2>
         <h3>Description</h3>
-        <p>{SkillDescription}</p>
+        <Paragraph>{SkillDescription}</Paragraph>
         <h3>Level</h3>
-        <p>{SkillLevel}</p>
-        <p>{`Your ${SkillNameFILTER} self assessment`}</p>
+        <Paragraph>{SkillLevel}</Paragraph>
+        <Paragraph>{`Your ${SkillNameFILTER} self assessment`}</Paragraph>
       </>
 
-        <>
+        <Label>
+          <LabelText>
+            Select a score
+          </LabelText>
           <Select input={{
             value: savedSkills[SkillNameFILTER] &&
-              savedSkills[SkillNameFILTER].score || "",
+              savedSkills[SkillNameFILTER]["Score"] || "",
             onChange: (e) => setSavedSkills(
               updateSavedSkills(
                 savedSkills,
@@ -59,7 +79,7 @@ const SkillsForm = ({
             <option value="2">2. Working at this level</option>
             <option value="3">3. Working above this level</option>
           </Select>
-        </>
+        </Label>
 
         <>
           <LimitTextArea
@@ -69,12 +89,12 @@ const SkillsForm = ({
               ...savedSkills,
               [SkillNameFILTER]: {
                 ...savedSkills[SkillNameFILTER],
-                examples: e.target.value,
+                ["Evidence"]: e.target.value,
               }
             })}
             value={
               savedSkills[SkillNameFILTER] &&
-                savedSkills[SkillNameFILTER].examples || ""
+                savedSkills[SkillNameFILTER]["Evidence"] || ""
             }
           />
         </>
@@ -87,24 +107,25 @@ const SkillsForm = ({
               ...savedSkills,
               [SkillNameFILTER]: {
                 ...savedSkills[SkillNameFILTER],
-                comments: e.target.value,
+                ["Comments"]: e.target.value,
               }
             })}
             value={
               savedSkills[SkillNameFILTER] &&
-                savedSkills[SkillNameFILTER].comments || ""
+                savedSkills[SkillNameFILTER]["Comments"] || ""
             }
           />
         </>
-    </>)
+    </Fieldset>)
   }
-  <button
+  <Button
     onClick={(e) => {
-      console.log(savedSkills)
+      saveSkills();
+      console.log(savedSkills);
     }}
   >
-    SUBMIT
-  </button>
+    Save
+  </Button>
   </form>
 </>
 

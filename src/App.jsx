@@ -13,12 +13,27 @@ import 'normalize.css'
 
 const processData = (d, dict) => {
   let { returns, framework, reportReturns } = JSON.parse(d);
-  let { setLoading, setRoles } = dict;
+
+  console.log(returns)
+
+  let {
+    setLoading,
+    setRoles,
+    setJobFam,
+    setRole,
+    setRoleLevel,
+    setSavedSkills
+  } = dict;
+
+  setRoles(framework);
+  setRole(returns[0]["Role"]);
+  setJobFam(returns[0]["JobFamily"]);
+  setRoleLevel(returns[0]["RoleLevel"]);
+  setSavedSkills(JSON.parse(returns[0]["Skills"]));
+
+  console.log('loaded...')
 
   setLoading(false);
-  setRoles(framework);
-
-  // window.history.pushState('/')
 }
 
 const App = () => {
@@ -39,6 +54,10 @@ const App = () => {
         {
           setLoading,
           setRoles,
+          setJobFam,
+          setRole,
+          setRoleLevel,
+          setSavedSkills,
         }
       )
       .getData();
@@ -46,13 +65,21 @@ const App = () => {
       fetch('/roleLevelData.json').then(
         response => response.json()
       ).then(data => {
-        setLoading(false);
         setRoles(data);
+        fetch('/return.json').then(
+          response => response.json()
+        ).then(data => {
+          setRole(data[0]["Role"]);
+          setJobFam(data[0]["JobFamily"]);
+          setRoleLevel(data[0]["RoleLevel"]);
+          setSavedSkills(JSON.parse(data[0]["Skills"]));
+          setLoading(false);
+        })
       })
     }
 
     // to make it work :(
-    window.history.pushState({}, "", '/')    
+    window.history.pushState({}, "", '/')
   }, []);
 
   return <Router>
@@ -61,7 +88,7 @@ const App = () => {
         <LoadingBox loading={loading}>
           <Routes>
             <Route path="/" element={
-              !loading && <Submit 
+              <Submit
                 allSpecialties={roles}
                 jobFam={jobFam}
                 role={role}
