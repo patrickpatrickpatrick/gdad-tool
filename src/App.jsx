@@ -23,6 +23,14 @@ const pageText = {
   "validate": {
     "heading": "Validate Your Line Report Submissions",
     "leadParagraph": "Please validate your line report submissions",
+  },
+  "loading": {
+    "heading": "Fetching data",
+    "leadParagraph": "Please Wait"
+  },
+  "error": {
+    "heading": "Error",
+    "leadParagraph": "There was an error fetching the data."
   }
 }
 
@@ -40,7 +48,6 @@ const App = () => {
   const [roleLevel, setRoleLevel] = useState("");
   const [savedSkills, setSavedSkills] = useState({});
   const [lmEmail, setLmEmail] = useState("");
-
 
   useEffect(() => {
     setSkills(roles.filter((specialty) =>
@@ -99,6 +106,16 @@ const App = () => {
   }
 
   return <Routes>
+    <Route
+      path="/"
+      element={
+        <LoadingBox loading={true}>
+          <div aria-busy={loading} aria-live="polite" >
+            <Page {...{...pageText["loading"]}} />
+          </div>
+        </LoadingBox>
+      }
+    />
     <Route path="/submit-specialism"
       element={
           <Page {...{ ...pageText["submit"] }}>
