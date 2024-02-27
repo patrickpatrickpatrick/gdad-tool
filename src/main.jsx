@@ -8,6 +8,8 @@ import './index.css'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <GlobalStyle />
-    <App />
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>,
 )

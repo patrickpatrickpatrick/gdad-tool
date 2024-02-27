@@ -20,13 +20,13 @@ const SpecialismSelect = ({
   inputRef,
 }) => <Select
   label={label}
-  value={value}
   input={{
     onChange: (e) => {
       setValue(e.target.value);
     },
     ref: inputRef,
-    disabled: disabled
+    disabled,
+    value,
   }}
 >
   <Options options={options}>

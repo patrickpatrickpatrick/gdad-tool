@@ -8,8 +8,11 @@ import {
   Fieldset,
   Label,
   LabelText,
+  GridRow,
+  GridCol,
 } from 'govuk-react';
 
+import { Link } from "react-router-dom";
 import LimitTextArea from './../../components/LimitTextArea';
 import { updateSavedSkills } from './../../util';
 
@@ -19,7 +22,6 @@ const SkillsForm = ({
   skills,
   savedSkills,
   setSavedSkills,
-  setSection,
   saveSkills
 }) => <>
   <Heading
@@ -34,9 +36,13 @@ const SkillsForm = ({
       `You have currently selected ${roleLevel} as your role level.`
     }
   </Paragraph>
-  <a href="" onClick={() => setSection("specialismSpecificationForm")}>
+
+  <Link
+    to={'/submit-specialism'}
+  >
     Reselect role level
-  </a>
+  </Link>
+
   <SectionBreak level="LARGE" visible />
   <form>
   {
@@ -118,14 +124,24 @@ const SkillsForm = ({
         </>
     </Fieldset>)
   }
-  <Button
-    onClick={(e) => {
-      saveSkills();
-      console.log(savedSkills);
-    }}
-  >
-    Save
-  </Button>
+
+  <GridRow>
+      <Button
+        onClick={(e) => {
+          saveSkills();
+        }}
+      >
+        Save entered skills
+      </Button>
+
+      <Button
+        onClick={(e) => {
+          saveSkills();
+        }}
+      >
+        Submit for validation
+      </Button> 
+    </GridRow>
   </form>
 </>
 

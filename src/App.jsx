@@ -1,66 +1,67 @@
 import { useState, useEffect } from 'react'
-import { Page, LoadingBox } from 'govuk-react'
+import { LoadingBox } from 'govuk-react'
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  useNavigate,
 } from "react-router-dom";
 
-import CustomNav from './components/CustomNav';
-import { Submit, Validate } from './pages';
+import { Page } from './components';
+import { SpecialismSpecificationForm, SkillsForm } from './pages/submit';
+import { Validate } from './pages';
+
+import { processData, getData } from './util';
 
 import 'normalize.css'
 
-const processData = (d, dict) => {
-  let { returns, framework, reportReturns } = JSON.parse(d);
-
-  console.log(returns)
-
-  let {
-    setLoading,
-    setRoles,
-    setJobFam,
-    setRole,
-    setRoleLevel,
-    setSavedSkills
-  } = dict;
-
-  setRoles(framework);
-  setRole(returns[0]["Role"]);
-  setJobFam(returns[0]["JobFamily"]);
-  setRoleLevel(returns[0]["RoleLevel"]);
-  setSavedSkills(JSON.parse(returns[0]["Skills"]));
-
-  console.log('loaded...')
-
-  setLoading(false);
+const pageText = {
+  "submit": {
+    "heading": "Your Submission",
+    "leadParagraph": "Use this page to submit your DDaT skills assessment"
+  },
+  "validate": {
+    "heading": "Validate Your Line Report Submissions",
+    "leadParagraph": "Please validate your line report submissions",
+  }
 }
 
 const App = () => {
-  const [view, setView] = useState('/');
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
   const [roles, setRoles] = useState([])
+  const [skills, setSkills] = useState([]);
+
+  const [specialism, setSpecialism] = useState(null)
 
   const [jobFam, setJobFam] = useState("");
   const [role, setRole] = useState("");
   const [roleLevel, setRoleLevel] = useState("");
   const [savedSkills, setSavedSkills] = useState({});
+  const [lmEmail, setLmEmail] = useState("");
+
+
+  useEffect(() => {
+    setSkills(roles.filter((specialty) =>
+      specialty['JobfamilyFILTER'] == jobFam &&
+      specialty['RoleFILTER'] == role &&
+      specialty['RoleLevelFILTER'] == roleLevel
+    ))
+  }, [roleLevel])
 
   useEffect(() => {
     if (typeof google !== 'undefined') {
-      google.script.run
-      .withSuccessHandler(processData)
-      .withUserObject(
-        {
-          setLoading,
-          setRoles,
-          setJobFam,
-          setRole,
-          setRoleLevel,
-          setSavedSkills,
-        }
-      )
-      .getData();
+      getData({
+        setLoading,
+        setRoles,
+        setJobFam,
+        setRole,
+        setRoleLevel,
+        setSavedSkills,
+        setSpecialism,
+        navigate,
+      })
     } else {
       fetch('/roleLevelData.json').then(
         response => response.json()
@@ -74,39 +75,74 @@ const App = () => {
           setRoleLevel(data[0]["RoleLevel"]);
           setSavedSkills(JSON.parse(data[0]["Skills"]));
           setLoading(false);
+          setSpecialism({
+            "Role": data[0]["Role"],
+            "JobFamily": data[0]["JobFamily"],
+            "RoleLevel": data[0]["RoleLevel"],
+          })
+          setLmEmail(data[0]["LMEmail"]);
         })
       })
     }
-
-    // to make it work :(
-    window.history.pushState({}, "", '/')
   }, []);
 
-  return <Router>
-    <Page header={<CustomNav />}>
-      <div aria-live="polite" aria-busy={loading}>
-        <LoadingBox loading={loading}>
-          <Routes>
-            <Route path="/" element={
-              <Submit
-                allSpecialties={roles}
-                jobFam={jobFam}
-                role={role}
-                roleLevel={roleLevel}
-                setJobFam={setJobFam}
-                setRole={setRole}
-                setRoleLevel={setRoleLevel}
-                savedSkills={savedSkills}
-                setSavedSkills={setSavedSkills}
-                loading={loading}
-              />
+  const onSubmitSpecialismSpecificationForm = ({
+    localJobFam,
+    localRole,
+    localRoleLevel,
+    localLmEmail,
+  }) => {
+    setRole(localRole);
+    setRoleLevel(localRoleLevel);
+    setJobFam(localJobFam);
+    setLmEmail(localLmEmail);
+  }
+
+  return <Routes>
+    <Route path="/submit-specialism"
+      element={
+          <Page {...{ ...pageText["submit"] }}>
+            <SpecialismSpecificationForm
+              allSpecialties={roles}
+              onSubmit={onSubmitSpecialismSpecificationForm}
+              {...{
+                jobFam,
+                role,
+                roleLevel,
+                setJobFam,
+                setRole,
+                setRoleLevel,
+                specialism,
+                lmEmail,
+              }}
+            />
+          </Page>
+        }
+      />
+      <Route path="/submit-skills"
+        element={
+          <Page {...{ ...pageText["submit"] }}>
+            <SkillsForm
+              {...{
+                skills,
+                jobFam,
+                role,
+                roleLevel,
+                savedSkills,
+                setSavedSkills,
+              }
             }/>
-            <Route path="/validate" element={<Validate />}/>
-          </Routes>
-        </LoadingBox>
-      </div>
-    </Page>
-  </Router>
+          </Page>
+        }
+      />
+      <Route path="/validate"
+        element={
+          <Page {...{ ...pageText["validate"] }}>
+            <Validate />
+          </Page>
+        }
+      />
+  </Routes>
 }
 
 export default App

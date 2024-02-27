@@ -1,7 +1,8 @@
 import { getUniqElements } from './../../util';
 
-import { Button, Paragraph } from 'govuk-react';
+import { Button, Paragraph, InputField } from 'govuk-react';
 import { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import SpecialismSelect from './../../components/SpecialismSelect';
 
@@ -12,11 +13,12 @@ const SpecialismSpecificationForm = ({
   jobFam,
   role,
   roleLevel,
-  setJobFam,
-  setRole,
-  setRoleLevel,
-  loading,
+  specialism,
+  lmEmail,
+  onSubmit,
 }) => {
+  const navigate = useNavigate();
+
   const allJobFamilies = getUniqElements(allSpecialties, 'JobfamilyFILTER');
   const [allRoles, setAllRoles] = useState(getUniqElements(allSpecialties, 'RoleFILTER'));
   const [allRoleLevels, setAllRoleLevels] = useState(getUniqElements(allSpecialties, 'RoleLevelFILTER'));
@@ -24,40 +26,40 @@ const SpecialismSpecificationForm = ({
   const [localJobFam, setLocalJobFam ] = useState("");
   const [localRole, setLocalRole ] = useState("");
   const [localRoleLevel, setLocalRoleLevel ] = useState("");
-
-  const jobFamRef = useRef();
-  const roleRef = useRef();
-  const roleLevelRef = useRef();
+  const [localLmEmail, setLocalLmEmail] = useState("");
 
   useEffect(() => {
-    setLocalJobFam(jobFam)
-    setLocalRole(role)
-    setLocalRoleLevel(roleLevel)
-  }, [role, roleLevel, jobFam])
+    setLocalLmEmail(lmEmail);
+  }, [lmEmail])
 
   useEffect(() => {
-    if (localJobFam !== jobFam) {
-      setLocalRole("")
-      setLocalRoleLevel("")    
+    if (specialism) {
+      setLocalRole(specialism["Role"]);
+      setLocalRoleLevel(specialism["RoleLevel"])
+      setLocalJobFam(specialism["JobFamily"])
     }
+  }, [specialism])
 
-    jobFamRef.current.value = localJobFam
-    setAllRoles(getUniqElements(allSpecialties.filter(x => x['JobfamilyFILTER'] == localJobFam), 'RoleFILTER'));
+  useEffect(() => {
+    setAllRoles(
+      getUniqElements(
+        allSpecialties.filter(x => (localJobFam.length && x['JobfamilyFILTER'] == localJobFam)) , 'RoleFILTER'
+      )
+    )
+    setAllRoleLevels(
+      getUniqElements(
+        allSpecialties.filter(x => (x['RoleFILTER'] == localRole && x['JobfamilyFILTER'] == localJobFam)) , 'RoleLevelFILTER'
+      )
+    )    
   }, [localJobFam])
 
   useEffect(() => {
-    if (localRole !== role) {
-      setRoleLevel("");
-    }
-
-    roleRef.current.value = localRole;
-
-    setAllRoleLevels(getUniqElements(allSpecialties.filter(x => x['RoleFILTER'] == localRole), 'RoleLevelFILTER'));
-  }, [localRole, allRoles])
-
-  useEffect(() => {
-    roleLevelRef.current.value = localRoleLevel;
-  }, [localRoleLevel, allRoleLevels])
+    setAllRoleLevels(
+      getUniqElements(
+        allSpecialties.filter(x => (x['RoleFILTER'] == localRole && x['JobfamilyFILTER'] == localJobFam)) , 'RoleLevelFILTER'
+      )
+    )
+  }, [localRole])
 
   return (<form>
     <Paragraph>
@@ -69,7 +71,6 @@ const SpecialismSpecificationForm = ({
       value={localJobFam}
       setValue={setLocalJobFam}
       options={allJobFamilies}
-      inputRef={jobFamRef}
       disabled={false}
     />
 
@@ -78,8 +79,7 @@ const SpecialismSpecificationForm = ({
       value={localRole}
       setValue={setLocalRole}
       options={allRoles}
-      inputRef={roleRef}
-      disabled={!localJobFam.length}
+      disabled={allRoles.length == 0}
     />
 
     <SpecialismSelect
@@ -87,14 +87,35 @@ const SpecialismSpecificationForm = ({
       value={localRoleLevel}
       setValue={setLocalRoleLevel}
       options={allRoleLevels}
-      inputRef={roleLevelRef}
-      disabled={!localRole.length}
+      disabled={allRoleLevels.length == 0}
     />
 
+    <InputField
+      input={{
+        value: localLmEmail,
+        onChange: (e) => setLocalLmEmail(e.target.value)
+      }}
+    >
+      Your line manager (if correct, don't edit it)
+    </InputField>
+
     <Button
-      className={'govuk-button--disabled'}
-      disabled={!(jobFam && role && roleLevel)}
-      onClick={() => changeSection('skillsSection')}
+      disabled={
+        !(
+          localJobFam.length &&
+          allRoles.find(x => x == localRole) &&
+          allRoleLevels.find(x => x == localRoleLevel)
+        )
+      }
+      onClick={() => {
+       navigate("/submit-skills");
+       onSubmit({
+        localRole,
+        localJobFam,
+        localRoleLevel,
+        localLmEmail
+       }); 
+      }}
     >
       Continue to skills for selected role level
     </Button>
