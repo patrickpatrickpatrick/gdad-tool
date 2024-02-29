@@ -3,8 +3,8 @@ import { Select } from 'govuk-react';
 const Options = ({ options, children }) => <>
   { children }
   {
-    options.map(option =>
-      <option key={option} value={option}>
+    options.map((option, index) =>
+      <option key={`${option}-${index}`} value={option}>
         {option}
       </option>
     )
@@ -18,7 +18,8 @@ const SpecialismSelect = ({
   disabled,
   options,
   inputRef,
-}) => <Select
+}) => <div className={"govuk-!-margin-bottom-3"}>
+<Select
   label={label}
   input={{
     onChange: (e) => {
@@ -30,10 +31,11 @@ const SpecialismSelect = ({
   }}
 >
   <Options options={options}>
-    <option value="">
+    <option key="none" value="">
       {`Choose a ${label}`}
     </option>
   </Options>
 </Select>
+</div>
 
 export default SpecialismSelect;

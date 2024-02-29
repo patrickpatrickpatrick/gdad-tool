@@ -1,38 +1,26 @@
 import { useState, useEffect } from 'react'
-import { LoadingBox } from 'govuk-react'
+import { LoadingBox, Panel } from 'govuk-react'
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useNavigate,
+  Link,
 } from "react-router-dom";
 
 import { Page } from './components';
 import { SpecialismSpecificationForm, SkillsForm } from './pages/submit';
 import { Validate } from './pages';
+import { pageText } from './constants';
 
-import { processData, getData } from './util';
-
-import 'normalize.css'
-
-const pageText = {
-  "submit": {
-    "heading": "Your Submission",
-    "leadParagraph": "Use this page to submit your DDaT skills assessment"
-  },
-  "validate": {
-    "heading": "Validate Your Line Report Submissions",
-    "leadParagraph": "Please validate your line report submissions",
-  },
-  "loading": {
-    "heading": "Fetching data",
-    "leadParagraph": "Please Wait"
-  },
-  "error": {
-    "heading": "Error",
-    "leadParagraph": "There was an error fetching the data."
-  }
-}
+import {
+  processData,
+  getData,
+  saveData,
+  validateInput,
+  devGoogle,
+  classifyScore,
+} from './util';
 
 const App = () => {
   const navigate = useNavigate();
@@ -41,6 +29,8 @@ const App = () => {
   const [roles, setRoles] = useState([])
   const [skills, setSkills] = useState([]);
 
+  const [success, setSuccess] = useState(false)
+
   const [specialism, setSpecialism] = useState(null)
 
   const [jobFam, setJobFam] = useState("");
@@ -48,48 +38,39 @@ const App = () => {
   const [roleLevel, setRoleLevel] = useState("");
   const [savedSkills, setSavedSkills] = useState({});
   const [lmEmail, setLmEmail] = useState("");
+  const [validate, setValidate] = useState(false);
+
+  const [reportReturns, setReportReturns] = useState([]);
+
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    setSkills(roles.filter((specialty) =>
-      specialty['JobfamilyFILTER'] == jobFam &&
-      specialty['RoleFILTER'] == role &&
-      specialty['RoleLevelFILTER'] == roleLevel
-    ))
-  }, [roleLevel])
+    if (success) {
+      navigate("/success-submit")
+    }
+  }, [success])
 
   useEffect(() => {
+    navigate("/")
+
+    const parameters = {
+      setRoles,
+      setRole,
+      setJobFam,
+      setRoleLevel,
+      setSavedSkills,
+      setSpecialism,
+      setLmEmail,
+      setReportReturns,
+      setSkills,
+      setLoading,
+      navigate,
+    }
+
     if (typeof google !== 'undefined') {
-      getData({
-        setLoading,
-        setRoles,
-        setJobFam,
-        setRole,
-        setRoleLevel,
-        setSavedSkills,
-        setSpecialism,
-        navigate,
-      })
+      getData(parameters)
     } else {
-      fetch('/roleLevelData.json').then(
-        response => response.json()
-      ).then(data => {
-        setRoles(data);
-        fetch('/return.json').then(
-          response => response.json()
-        ).then(data => {
-          setRole(data[0]["Role"]);
-          setJobFam(data[0]["JobFamily"]);
-          setRoleLevel(data[0]["RoleLevel"]);
-          setSavedSkills(JSON.parse(data[0]["Skills"]));
-          setLoading(false);
-          setSpecialism({
-            "Role": data[0]["Role"],
-            "JobFamily": data[0]["JobFamily"],
-            "RoleLevel": data[0]["RoleLevel"],
-          })
-          setLmEmail(data[0]["LMEmail"]);
-        })
-      })
+      devGoogle(...Object.values(parameters))
     }
   }, []);
 
@@ -99,10 +80,53 @@ const App = () => {
     localRoleLevel,
     localLmEmail,
   }) => {
-    setRole(localRole);
-    setRoleLevel(localRoleLevel);
-    setJobFam(localJobFam);
+    if (
+      (localJobFam !== jobFam) ||
+      (localRole !== role) ||
+      (localRoleLevel !== roleLevel)
+    ) {
+      setRole(localRole);
+      setRoleLevel(localRoleLevel);
+      setJobFam(localJobFam);
+
+      setSkills(roles.filter((specialty) =>
+        specialty['JobfamilyFILTER'] == jobFam &&
+        specialty['RoleFILTER'] == role &&
+        specialty['RoleLevelFILTER'] == roleLevel
+      ))
+
+      setSavedSkills({});
+    }
+
     setLmEmail(localLmEmail);
+  }
+
+  const onSubmit = ({
+    toValidate,
+    localSavedSkills
+  }) => {
+    const validation = validateInput(localSavedSkills, skills);
+
+    if (Object.keys(validation).length) {
+      setErrors(validation)
+    } else {
+      setSavedSkills(localSavedSkills);
+
+      saveData(
+        {
+          jobFam,
+          role,
+          roleLevel,
+          lmEmail,
+          savedSkills
+        },
+        toValidate,
+        () => { 
+          setSuccess(true);
+          setValidate(toValidate);
+        }
+      );
+    }
   }
 
   return <Routes>
@@ -135,30 +159,53 @@ const App = () => {
             />
           </Page>
         }
-      />
-      <Route path="/submit-skills"
-        element={
-          <Page {...{ ...pageText["submit"] }}>
-            <SkillsForm
-              {...{
-                skills,
-                jobFam,
-                role,
-                roleLevel,
-                savedSkills,
-                setSavedSkills,
+    />
+    <Route path="/submit-skills"
+      element={
+        <Page {...{ ...pageText["submit"] }}>
+          <SkillsForm
+            {...{
+              skills,
+              jobFam,
+              role,
+              roleLevel,
+              savedSkills,
+              setSavedSkills,
+              errors,
+              onSubmit,
+            }
+          }/>
+        </Page>
+      }
+    />
+    <Route path="/validate"
+      element={
+        <Page {...{ ...pageText["validate"] }}>
+          <Validate
+            {
+              ...{
+                reportReturns
               }
-            }/>
-          </Page>
-        }
-      />
-      <Route path="/validate"
-        element={
-          <Page {...{ ...pageText["validate"] }}>
-            <Validate />
-          </Page>
-        }
-      />
+            }
+          />
+        </Page>
+      }
+    />
+    <Route path="/success"
+      element={
+        <Page>
+          <Panel
+            title={
+              !validate ? "Form Saved Successfully" : "Form Submitted for Validation"
+            }
+          > 
+            Your provisional score is {classifyScore(savedSkills)}
+            <br/><br/>
+            <Link to="/submit-specialism">Click here to edit your submission</Link>
+          </Panel>
+        </Page>
+      }
+    />
   </Routes>
 }
 

@@ -4,14 +4,26 @@ const LimitTextArea = ({
   label,
   value,
   onChange,
-  limit
+  limit,
+  error,
+  id
 }) => {
-
-  return <>
-    <TextArea input={{
-      onChange,
-      value,
-    }}>
+  return <div
+    id={id}
+    className={"govuk-!-margin-bottom-3"}
+  >
+    <TextArea
+      hint="No more than 3000 characters"
+      input={{
+        onChange,
+        value,
+        className: "govuk-!-margin-bottom-3"
+      }}
+      meta={{...(error ? {
+        error: error,
+        touched: true
+      } : {})}}
+    >
      {label}
     </TextArea>
     {
@@ -20,11 +32,13 @@ const LimitTextArea = ({
       </span>
     }
     {
-       (value.length > limit) && <span>
+       (value.length > limit) && <span
+        style={{ color: 'red' }}
+       >
         You are {value.length - limit} characters over the limit.
       </span>
     }    
-  </> 
+  </div> 
 }
 
 export default LimitTextArea;
