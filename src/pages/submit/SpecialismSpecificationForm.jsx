@@ -6,26 +6,33 @@ import { SpecialismSelect } from './../../components';
 import { getUniqElements } from './../../util';
 
 const SpecialismSpecificationForm = ({
-  allSpecialties,
+  framework,
   selectedRoles,
   changeSection,
   jobFam,
   role,
   roleLevel,
   specialism,
+  validated,
   lmEmail,
   onSubmit,
 }) => {
   const navigate = useNavigate();
 
-  const allJobFamilies = getUniqElements(allSpecialties, 'JobfamilyFILTER');
-  const [allRoles, setAllRoles] = useState(getUniqElements(allSpecialties, 'RoleFILTER'));
-  const [allRoleLevels, setAllRoleLevels] = useState(getUniqElements(allSpecialties, 'RoleLevelFILTER'));
+  const allJobFamilies = getUniqElements(framework, 'JobfamilyFILTER');
+  const [allRoles, setAllRoles] = useState(getUniqElements(framework, 'RoleFILTER'));
+  const [allRoleLevels, setAllRoleLevels] = useState(getUniqElements(framework, 'RoleLevelFILTER'));
 
   const [localJobFam, setLocalJobFam ] = useState("");
   const [localRole, setLocalRole ] = useState("");
   const [localRoleLevel, setLocalRoleLevel ] = useState("");
   const [localLmEmail, setLocalLmEmail] = useState("");
+
+  useEffect(() => {
+    if (validated) {
+      navigate('/submit-skills')
+    }
+  }, [validated])
 
   useEffect(() => {
     setLocalLmEmail(lmEmail);
@@ -42,12 +49,12 @@ const SpecialismSpecificationForm = ({
   useEffect(() => {
     setAllRoles(
       getUniqElements(
-        allSpecialties.filter(x => (localJobFam.length && x['JobfamilyFILTER'] == localJobFam)) , 'RoleFILTER'
+        framework.filter(x => (localJobFam.length && x['JobfamilyFILTER'] == localJobFam)) , 'RoleFILTER'
       )
     )
     setAllRoleLevels(
       getUniqElements(
-        allSpecialties.filter(x => (x['RoleFILTER'] == localRole && x['JobfamilyFILTER'] == localJobFam)) , 'RoleLevelFILTER'
+        framework.filter(x => (x['RoleFILTER'] == localRole && x['JobfamilyFILTER'] == localJobFam)) , 'RoleLevelFILTER'
       )
     )    
   }, [localJobFam])
@@ -55,7 +62,7 @@ const SpecialismSpecificationForm = ({
   useEffect(() => {
     setAllRoleLevels(
       getUniqElements(
-        allSpecialties.filter(x => (x['RoleFILTER'] == localRole && x['JobfamilyFILTER'] == localJobFam)) , 'RoleLevelFILTER'
+        framework.filter(x => (x['RoleFILTER'] == localRole && x['JobfamilyFILTER'] == localJobFam)) , 'RoleLevelFILTER'
       )
     )
   }, [localRole])

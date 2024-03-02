@@ -23,7 +23,6 @@ const CustomNav = () => {
     >
       <NavLink path="/submit-specialism" match="submit" name="Your Submission" />
       <NavLink path="/validate" match="validate" name="Validate Your Line Report Submissions" />
-      <NavLink path="/success" match="success" name="test success" />
     </TopNav>
   )
 } 

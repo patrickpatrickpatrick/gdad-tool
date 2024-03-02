@@ -1,3 +1,5 @@
+import { processData } from './googleRoutines';
+
 export const getNameFromEmail = (email) => email.match(/(.*)@.*/)[1]
 .split('.')
 .map(([firstLetter, ...restLetters]) => [ firstLetter.toUpperCase(), ...restLetters ].join('') )
@@ -31,51 +33,10 @@ export const classifyScore = (savedSkills) => {
   }
 }
 
-export const devGoogle = (...parameters) => {
-  const [
-    setRoles,
-    setRole,
-    setJobFam,
-    setRoleLevel,
-    setSavedSkills,
-    setSpecialism,
-    setLmEmail,
-    setReportReturns,
-    setSkills,
-    setLoading,
-    navigate,
-  ] = parameters;
-
+export const devGoogle = (parameters) => {
   fetch('/return.json').then(
     response => response.json()
-  ).then(({ skills, returns }) => {
-    setRoles(skills);
-    setRole(returns[0]["Role"]);
-    setJobFam(returns[0]["JobFamily"]);
-    setRoleLevel(returns[0]["RoleLevel"]);
-    setSavedSkills(JSON.parse(returns[0]["Skills"]));
-    setSpecialism({
-      "Role": returns[0]["Role"],
-      "JobFamily": returns[0]["JobFamily"],
-      "RoleLevel": returns[0]["RoleLevel"],
-    })
-    setLmEmail(returns[0]["LMEmail"]);
-
-    setReportReturns([
-      {
-        ...returns[0],
-        Skills: JSON.parse(returns[0]["Skills"])
-      }
-    ]);
-
-    setSkills(skills.filter((specialty) =>
-      specialty['JobfamilyFILTER'] == returns[0]["JobFamily"] &&
-      specialty['RoleFILTER'] == returns[0]["Role"] &&
-      specialty['RoleLevelFILTER'] == returns[0]["RoleLevel"]
-    ))
-
-    setLoading(false);
-
-    navigate("/submit-specialism")
+  ).then(({ framework, returns }) => {
+    processData(JSON.stringify({ framework, returns, reportReturns: returns }), parameters)
   })
 }

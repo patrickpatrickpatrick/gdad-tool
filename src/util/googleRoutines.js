@@ -2,7 +2,7 @@ export const processData = (d, dict) => {
   let { returns, framework, reportReturns } = JSON.parse(d);
 
   let {
-    setRoles,
+    setFramework,
     setRole,
     setJobFam,
     setRoleLevel,
@@ -12,10 +12,11 @@ export const processData = (d, dict) => {
     setReportReturns,
     setSkills,
     setLoading,
+    setCompleted,
     navigate,
   } = dict;
 
-  setRoles(framework);
+  setFramework(framework);
 
   setSpecialism({
     "Role": returns[0]["Role"],
@@ -29,33 +30,40 @@ export const processData = (d, dict) => {
   setSavedSkills(JSON.parse(returns[0]["Skills"]));
   setLmEmail(returns[0]["LMEmail"]);
 
-  setReportReturns(reportReturns);
+  setReportReturns(reportReturns.map(reportReturn => ({
+    ...reportReturn,
+    ["Skills"]: JSON.parse(reportReturn["Skills"])
+  })));
 
-  setSkills(skills.filter((specialty) =>
+  setSkills(framework.filter((specialty) =>
     specialty['JobfamilyFILTER'] == returns[0]["JobFamily"] &&
     specialty['RoleFILTER'] == returns[0]["Role"] &&
     specialty['RoleLevelFILTER'] == returns[0]["RoleLevel"]
   ))  
 
   setLoading(false);
-  navigate('/submit-specialism');
-}
 
-export const saveData = (userInput, toValidate, onSuccess) => {
-  if (toValidate) {
-    console.log('well, its ready for ur LM to validate');
+  setCompleted(returns[0]["Completed"] == 'Yes');
+
+  if (returns[0]["RoleLevel"] && returns[0]["RoleLevel"].length > 0) {
+    navigate('/submit-specialism');
   } else {
-    console.log('well, just saving it')
+    navigate('/submit-skills');
   }
-
-  onSuccess();
-
-  console.log(userInput)
-
-  return userInput;
 }
 
-export const getData = (userObject) => google.script.run
+export const saveDataSuccess = (userInput, onSuccess) => {
+  onSuccess();
+}
+
+export const getData = (userObject) => google.script
+  .run
   .withSuccessHandler(processData)
   .withUserObject(userObject)
   .getData();
+
+export const saveData = (userObject) => google.script
+  .run
+  .withSuccessHandler(saveDataSuccess)
+  .withUserObject(userObject)
+  .saveReturn();
