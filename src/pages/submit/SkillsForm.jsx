@@ -154,7 +154,10 @@ const SkillsForm = ({
           <Button
             onClick={(e) => {
               e.preventDefault();
-              onSubmit({ toValidate: false, localSavedSkills });
+              onSubmit({
+                toValidate: false,
+                localSavedSkills,
+              });
             }}
             style={{
               marginRight: "15px"
@@ -166,7 +169,10 @@ const SkillsForm = ({
           <Button
             onClick={(e) => {
               e.preventDefault();
-              onSubmit({ toValidate: true, localSavedSkills });
+              onSubmit({
+                toValidate: true,
+                localSavedSkills,
+              });
             }}
           >
             Submit for validation
