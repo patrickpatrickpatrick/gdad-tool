@@ -4,6 +4,7 @@ import Page from './Page';
 import SpecialismSelect from './SpecialismSelect';
 import ErrorSummary from './ErrorSummary';
 import ValidateTable from './ValidateTable'
+import ValidateForm from './ValidateForm';
 
 export {
   Accordion,
@@ -12,4 +13,5 @@ export {
   Page,
   SpecialismSelect,
   ValidateTable,
+  ValidateForm,
 }

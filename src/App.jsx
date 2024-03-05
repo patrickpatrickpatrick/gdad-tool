@@ -17,6 +17,7 @@ import {
   processData,
   getData,
   saveData,
+  saveReport,
   validateInput,
   devGoogle,
   classifyScore,
@@ -30,11 +31,8 @@ const App = () => {
   const [framework, setFramework] = useState([])
   const [skills, setSkills] = useState([]);
   const [completed, setCompleted] = useState(false);
-
-  const [success, setSuccess] = useState(false)
-
-  const [specialism, setSpecialism] = useState(null)
-
+  const [success, setSuccess] = useState(false);
+  const [specialism, setSpecialism] = useState(null);
   const [jobFam, setJobFam] = useState("");
   const [role, setRole] = useState("");
   const [roleLevel, setRoleLevel] = useState("");
@@ -67,8 +65,9 @@ const App = () => {
       setReportReturns,
       setSkills,
       setLoading,
-      navigate,
       setCompleted,
+      setValidated,
+      navigate,
     }
 
     // dev mode
@@ -78,6 +77,41 @@ const App = () => {
       devGoogle(parameters)
     }
   }, []);
+
+  const onSubmitLMReport = (
+    name,
+    passedProbation,
+    validatedByLm,
+  ) => {
+    const indexOfReport = reportReturns.findIndex(x => x["Name"] == name);
+
+    const report = {
+      ...reportReturns[indexOfReport],
+      ["LineManagerApproved"]: validatedByLm,
+      ["PassedProbation"]: passedProbation,
+    }
+
+    if (typeof google == 'undefined') {
+      submitLMReportSuccess(report);
+    } else {
+      saveReport({
+        report,
+        onSuccess: submitLMReportSuccess
+      })
+    }
+  }
+
+  const submitLMReportSuccess = (
+    report
+  ) => {
+    const indexOfReport = reportReturns.findIndex(x => x["Name"] == report["Name"]);
+
+    setReportReturns([
+      ...reportReturns.slice(0, indexOfReport),
+      report,
+      ...reportReturns.slice(indexOfReport + 1, reportReturns.length),
+    ]);
+  }
 
   const onSubmitSpecialismSpecificationForm = ({
     localJobFam,
@@ -124,7 +158,7 @@ const App = () => {
           "Role Level": roleLevel,
           "LMEmail": lmEmail,
           "Skills": savedSkills,
-          "Completed": toValidate ? "Yes" : "No",         
+          "Completed": toValidate ? "Yes" : "No",
         },
         onSubmit: onSuccess(toValidate),
       }
@@ -202,6 +236,7 @@ const App = () => {
       element={
         <Page {...{ ...pageText["validate"] }}>
           <Validate
+            onSubmit={onSubmitLMReport}
             {
               ...{
                 reportReturns
@@ -216,9 +251,10 @@ const App = () => {
         <Page>
           <Panel
             title={
-              !validated ? "Form Saved Successfully" : "Form Submitted for Validation"
+              !validated ?
+                "Form Saved Successfully" : "Form Submitted for Validation"
             }
-          > 
+          >
             Your provisional score is {classifyScore(savedSkills)}
             <br/><br/>
             <Link to="/submit-specialism">Click here to edit your submission</Link>

@@ -1,6 +1,6 @@
 import { getNameFromEmail, getUniqElements, devGoogle, classifyScore } from './misc';
 import { updateSavedSkills } from './skillsHandling';
-import { processData, getData, saveData, saveDataSuccess } from './googleRoutines';
+import { processData, getData, saveData, saveDataSuccess, saveReport } from './googleRoutines';
 import { createErrors, validateInput } from './validation';
 
 export {
@@ -15,4 +15,5 @@ export {
   saveData,
   validateInput,
   saveDataSuccess,
+  saveReport,
 }

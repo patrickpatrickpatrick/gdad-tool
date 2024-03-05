@@ -8,6 +8,5 @@ export const updateSavedSkills = (
   [skillName]: {
     ...savedSkills[skillName],
     [attribute]: value,
-  }  
+  }
 });
-

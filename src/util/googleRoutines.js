@@ -13,6 +13,7 @@ export const processData = (d, dict) => {
     setSkills,
     setLoading,
     setCompleted,
+    setValidated,
     navigate,
   } = dict;
 
@@ -39,11 +40,13 @@ export const processData = (d, dict) => {
     specialty['JobfamilyFILTER'] == returns[0]["JobFamily"] &&
     specialty['RoleFILTER'] == returns[0]["Role"] &&
     specialty['RoleLevelFILTER'] == returns[0]["RoleLevel"]
-  ))  
+  ))
 
   setLoading(false);
 
   setCompleted(returns[0]["Completed"] == 'Yes');
+
+  setValidated(returns[0]["LineManagerApproved"] == 'Yes')
 
   if (returns[0]["RoleLevel"] && returns[0]["RoleLevel"].length > 0) {
     navigate('/submit-specialism');
@@ -52,9 +55,19 @@ export const processData = (d, dict) => {
   }
 }
 
-export const saveDataSuccess = (userInput, onSuccess) => {
+export const saveDataSuccess = (returnVal, { onSuccess }) => {
   onSuccess();
 }
+
+export const saveReportSuccess = (returnVal, { onSuccess }) => {
+ onSuccess();
+}
+
+export const saveReport = (userObject) => google.script
+  .run
+  .withSuccessHandler(processData)
+  .withUserObject(userObject)
+  .getData();
 
 export const getData = (userObject) => google.script
   .run

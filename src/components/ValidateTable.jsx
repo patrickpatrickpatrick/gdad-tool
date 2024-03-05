@@ -40,7 +40,9 @@ const ValidateTable = ({
         Evidence,
       } = Skills[skill]
 
-      return <>
+      return <div
+        key={skill}
+      >
         <h2>
           {
             skill
@@ -72,7 +74,7 @@ const ValidateTable = ({
             </Table.Cell>
           </Table.Row>
         </Table>
-      </>
+      </div>
     })
   }
 </div>

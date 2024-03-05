@@ -16,7 +16,6 @@ import { Link } from "react-router-dom";
 import { LimitTextArea, ErrorSummary } from './../../components';
 import { updateSavedSkills, createErrors } from './../../util';
 
-
 const SkillsForm = ({
   role,
   roleLevel,

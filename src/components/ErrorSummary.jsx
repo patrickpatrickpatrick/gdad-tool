@@ -28,5 +28,4 @@ const ErrorSummary = ({ errors }) => {
   </div>)
 }
 
-
 export default ErrorSummary;

@@ -1,6 +1,7 @@
 import {
   Accordion,
-  ValidateTable
+  ValidateTable,
+  ValidateForm,
 } from './../components';
 import { getNameFromEmail } from './../util';
 import {
@@ -10,87 +11,95 @@ import {
   Select,
   Paragraph,
 } from 'govuk-react';
+import { useRef, useEffect } from 'react';
 
-const StatusText = ({ completed, children, style }) => <span
-  style={{
-    color: completed ? "green" : "red",
-    ...style
-  }}
->
-  {
-    children
-  }
-</span>
+const nameToId = name => name.replace(/\@|\./g, '')
 
-const ValidateForm = ({
-  name
-}) => <form>
-  <Paragraph>
-    Line manager validation for {getNameFromEmail(name)}
-  </Paragraph>
+const Summary = ({ Completed, LineManagerApproved, Name }) => <div>
+  <span
+    id={`${nameToId(name)}-completed`}
+    style={{
+      marginRight: "20px"
+    }}
+    completed={Completed == "Yes"}
+  ></span>
+  <span
+    id={`${nameToId(name)}-approved`}
+    completed={LineManagerApproved == "Yes"}
+  ></span>
+</div>
 
-  <Select
-    label={"Passed probation"}
-  >
-    <option value="">Please select an option</option>
-    <option value="Yes">Yes</option>
-    <option value="No">No</option>
-  </Select>
+const Validate = ({
+  reportReturns,
+  onSubmit
+}) => {
+  const accordionRef = useRef();
 
-  <Select
-    label={"Validated by line manager"}
-  >
-    <option value="">Please select an option</option>
-    <option value="Yes">Yes</option>
-    <option value="No">No</option>
-  </Select>   
+  // horrifying workaround, sorry!!
+  // this is because the accordion function regenerates the HTML
+  // so refs for the spans won't work here :(
+  // TODO: a native react accordion
 
-  <Button>
-    Submit validation for {getNameFromEmail(name)}
-  </Button>
-</form>
-
-const Validate = ({ reportReturns }) => <>
-  <Accordion
-    id={"accordion-default"}
-    items={
-      reportReturns.map(({
+  useEffect(() => {
+    if (accordionRef.current) {
+      reportReturns.forEach(({
         Name,
         Completed,
         LineManagerApproved,
-        ...skillsAndRole
-      }) => ({
-        heading: getNameFromEmail(Name),
-        summary: <div>
-          <StatusText style={{
-            marginRight: "20px"
-          }} completed={Completed == "Yes"}>
-            {
-              Completed == "Yes" && "Completed" || "Not Completed"
-            }
-          </StatusText>
+      }) => {
+        const completedSpan = accordionRef.current.querySelector(`#${nameToId(name)}-completed`);
+        const approvedSpan = accordionRef.current.querySelector(`#${nameToId(name)}-approved`);
 
-          <StatusText completed={LineManagerApproved == "Yes"}>
-            {
-              LineManagerApproved == "Yes" && "Validated" || "Not Validated"
-            }
-          </StatusText>
-        </div>,
-        content: <>
-          <ValidateTable
-            {
-              ...{
-                ...skillsAndRole
-              }
-            }
-          />
-          <ValidateForm
-            name={Name}
-          />
-        </>
-      }))
+        if (completedSpan) {
+          completedSpan.innerText = Completed == "Yes"
+            && "Completed" || "Not Completed"
+          completedSpan.style.color = Completed == "Yes" ? "green" : "red"
+        }
+
+        if (approvedSpan) {
+          approvedSpan.innerText = LineManagerApproved == "Yes"
+            && "Validated" || "Not Validated"
+          approvedSpan.style.color = LineManagerApproved == "Yes" ? "green" : "red"
+        }
+      })
     }
-  />
-</>
+  }, [reportReturns])
+
+  return (
+    <>
+      <Accordion
+        id={"accordion-default"}
+        accordionRef={accordionRef}
+        items={
+          reportReturns.map(({
+            Name,
+            Completed,
+            LineManagerApproved,
+            ...skillsAndRole
+          }) => {
+
+            return {
+              heading: getNameFromEmail(Name),
+              summary: <Summary {...{ LineManagerApproved, Completed, Name }} />,
+              content: <>
+                <ValidateTable
+                  {
+                    ...{
+                      ...skillsAndRole
+                    }
+                  }
+                />
+                <ValidateForm
+                  name={Name}
+                  onSubmit={onSubmit}
+                />
+              </>
+            }
+          })
+        }
+      />
+    </>
+  )
+}
 
 export default Validate;

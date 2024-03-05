@@ -1,14 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import { Accordion as AccordionJS } from 'govuk-frontend';
 
-function Accordion(props) {
-  const accordionRef = useRef();
-  const { headingLevel, items, className, ...attributes } = props;
+const Accordion = ({
+  id,
+  accordionRef,
+  headingLevel,
+  items,
+  className,
+  ...attributes  
+}) => {
   const [ accordionInstance, setAccordionInstance ] = useState(null);
   const [ govukAccordion, setGovukAccordion ] = useState(null)
 
   // stops the accordion executing multiple times
-  // this does break hot reload tho :(
   useEffect(() => {
     if (accordionRef.current.id != accordionInstance) {
       setAccordionInstance(accordionRef.current.id)
@@ -16,7 +20,6 @@ function Accordion(props) {
   }, [accordionRef])
 
   // stops the accordion executing multiple times
-  // this does break hot reload tho :(
   useEffect(() => {
     if (accordionRef.current.id == accordionInstance && !govukAccordion) {
       setGovukAccordion(new AccordionJS(accordionRef.current))
@@ -39,7 +42,7 @@ function Accordion(props) {
           <HeadingLevel className="govuk-accordion__section-heading">
             <span
               className="govuk-accordion__section-button"
-              id={`${props.id}-heading-${index + 1}`}
+              id={`${id}-heading-${index + 1}`}
             >
               {item.heading}
             </span>
@@ -47,7 +50,7 @@ function Accordion(props) {
           {item.summary ? (
             <div
               className="govuk-accordion__section-summary govuk-body"
-              id={`${props.id}-summary-${index + 1}`}
+              id={`${id}-summary-${index + 1}`}
             >
               {item.summary}
             </div>
@@ -56,9 +59,9 @@ function Accordion(props) {
           )}
         </div>
         <div
-          id={`${props.id}-content-${index + 1}`}
+          id={`${id}-content-${index + 1}`}
           className="govuk-accordion__section-content"
-          aria-labelledby={`${props.id}-heading-${index + 1}`}
+          aria-labelledby={`${id}-heading-${index + 1}`}
         >
           {item.content}
         </div>
