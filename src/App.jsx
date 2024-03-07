@@ -291,7 +291,7 @@ const App = () => {
           >
             Your provisional score is {classifyScore(savedSkills)}
             <br/><br/>
-            <Link to="/submit-specialism">Click here to edit your submission</Link>
+            <Link to="/submit-skills">Click here to edit your submission</Link>
           </Panel>
         </Page>
       }

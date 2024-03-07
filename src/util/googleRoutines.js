@@ -1,9 +1,14 @@
 function jsonParser(str) {
+  let temp;
+
   try {
-    return JSON.parse(reportReturn["Skills"])
+    temp = JSON.parse(str)
   } catch (e) {
-    return {}
+    console.log(e)
+    temp = {}
   }
+
+  return temp;
 }
 
 export const processData = (d, dict) => {
@@ -37,11 +42,7 @@ export const processData = (d, dict) => {
   setJobFam(returns[0]["JobFamily"] || "");
   setRoleLevel(returns[0]["RoleLevel"] || "");
 
-  try {
-    setSavedSkills(jsonParser(returns[0]["Skills"]));
-  } catch {
-    setSavedSkills({});
-  }
+  setSavedSkills(jsonParser(returns[0]["Skills"]));
 
   setLmEmail(returns[0]["LMEmail"]);
 
