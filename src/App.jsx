@@ -82,8 +82,11 @@ const App = () => {
     name,
     passedProbation,
     validatedByLm,
+    setSubmitting
   ) => {
     const indexOfReport = reportReturns.findIndex(x => x["Name"] == name);
+
+    setSubmitting(true);
 
     const report = {
       ...reportReturns[indexOfReport],
@@ -92,18 +95,25 @@ const App = () => {
     }
 
     if (typeof google == 'undefined') {
-      submitLMReportSuccess(report);
+      submitLMReportSuccess(
+        report,
+        setSubmitting,
+      )();
     } else {
       saveReport(
         report,
-        submitLMReportSuccess,
+        submitLMReportSuccess(
+          report,
+          setSubmitting,
+        ),
       )
     }
   }
 
   const submitLMReportSuccess = (
-    report
-  ) => {
+    report,
+    setSubmitting
+  ) => () => {
     const indexOfReport = reportReturns.findIndex(x => x["Name"] == report["Name"]);
 
     setReportReturns([
@@ -111,6 +121,8 @@ const App = () => {
       report,
       ...reportReturns.slice(indexOfReport + 1, reportReturns.length),
     ]);
+
+    setSubmitting(false);
   }
 
   const onSubmitSpecialismSpecificationForm = ({

@@ -86,13 +86,19 @@ export const saveReportSuccess = (returnVal, { onSuccess }) => {
 
 export const saveReport = (params, saveDataSuccess) => google.script
   .run
-  .withSuccessHandler(processData)
+  .withSuccessHandler(saveReportSuccess)
+  .withFailureHandler((err) => {
+    console.log(err)
+  })  
   .withUserObject({ onSubmit: saveDataSuccess })
   .getData(params);
 
 export const getData = userObject => google.script
   .run
   .withSuccessHandler(processData)
+  .withFailureHandler((err) => {
+    console.log(err)
+  })  
   .withUserObject(userObject)
   .getData();
 
