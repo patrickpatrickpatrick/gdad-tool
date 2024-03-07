@@ -80,8 +80,8 @@ export const saveDataSuccess = (returnVal, { onSubmit }) => {
   onSubmit();
 }
 
-export const saveReportSuccess = (returnVal, { onSuccess }) => {
- onSuccess();
+export const saveReportSuccess = (returnVal, { onSubmit }) => {
+  onSubmit();
 }
 
 export const saveReport = (params, saveDataSuccess) => google.script
