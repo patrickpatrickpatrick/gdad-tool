@@ -170,9 +170,9 @@ const App = () => {
       const params = {
         "JobFamily": jobFam,
         "Role": role,
-        "Role Level": roleLevel,
+        "RoleLevel": roleLevel,
         "LMEmail": lmEmail,
-        "Skills": savedSkills,
+        "Skills": localSavedSkills,
         "Completed": toValidate ? "Yes" : "No",
       }
 
