@@ -28,14 +28,14 @@ export const processData = (d, dict) => {
   setFramework(framework);
 
   setSpecialism({
-    "Role": returns[0]["Role"],
-    "JobFamily": returns[0]["JobFamily"],
-    "RoleLevel": returns[0]["RoleLevel"],
+    "Role": returns[0]["Role"] || "",
+    "JobFamily": returns[0]["JobFamily"] || "",
+    "RoleLevel": returns[0]["RoleLevel"] || "",
   })
 
-  setRole(returns[0]["Role"]);
-  setJobFam(returns[0]["JobFamily"]);
-  setRoleLevel(returns[0]["RoleLevel"]);
+  setRole(returns[0]["Role"] || "");
+  setJobFam(returns[0]["JobFamily"] || "");
+  setRoleLevel(returns[0]["RoleLevel"] || "");
 
   try {
     setSavedSkills(jsonParser(returns[0]["Skills"]));
@@ -50,11 +50,17 @@ export const processData = (d, dict) => {
     ["Skills"]: jsonParser(reportReturn["Skills"])
   })));
 
-  setSkills(framework.filter((specialty) =>
-    specialty['JobfamilyFILTER'] == returns[0]["JobFamily"] &&
-    specialty['RoleFILTER'] == returns[0]["Role"] &&
-    specialty['RoleLevelFILTER'] == returns[0]["RoleLevel"]
-  ))
+  if (
+    returns[0]["JobFamily"] &&
+    returns[0]["Role"] &&
+    returns[0]["RoleLevel"]
+  ) {
+    setSkills(framework.filter((specialty) =>
+      specialty['JobfamilyFILTER'] == returns[0]["JobFamily"] &&
+      specialty['RoleFILTER'] == returns[0]["Role"] &&
+      specialty['RoleLevelFILTER'] == returns[0]["RoleLevel"]
+    ))
+  }
 
   setLoading(false);
 
@@ -62,7 +68,7 @@ export const processData = (d, dict) => {
 
   setValidated(returns[0]["LineManagerApproved"] == 'Yes')
 
-  if (returns[0]["RoleLevel"] && returns[0]["RoleLevel"].length > 0) {
+  if (returns[0]["RoleLevel"]) {
     navigate('/submit-skills');
   } else {
     navigate('/submit-specialism');
