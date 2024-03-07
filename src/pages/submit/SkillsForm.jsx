@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import {
   Heading,
   Select,
@@ -10,10 +11,11 @@ import {
   Fieldset,
   Label,
   LabelText,
+  BackLink,
 } from 'govuk-react';
-
 import { Link } from "react-router-dom";
 import { LimitTextArea, ErrorSummary } from './../../components';
+
 import { updateSavedSkills, createErrors } from './../../util';
 
 const SkillsForm = ({
@@ -54,11 +56,15 @@ const SkillsForm = ({
           }
         </Paragraph>
 
-        <Link
-          to={'/submit-specialism'}
+        <BackLink
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/submit-specialism")
+          }}
         >
           Reselect role level
-        </Link>
+        </BackLink>
 
         <SectionBreak level="LARGE" visible />
 

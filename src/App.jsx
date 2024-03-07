@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { LoadingBox, Panel } from 'govuk-react'
+import { LoadingBox, Panel, Spinner } from 'govuk-react'
 import {
   BrowserRouter as Router,
   Routes,
@@ -94,10 +94,10 @@ const App = () => {
     if (typeof google == 'undefined') {
       submitLMReportSuccess(report);
     } else {
-      saveReport({
+      saveReport(
         report,
-        onSuccess: submitLMReportSuccess
-      })
+        submitLMReportSuccess,
+      )
     }
   }
 
@@ -129,9 +129,9 @@ const App = () => {
       setJobFam(localJobFam);
 
       setSkills(framework.filter((specialty) =>
-        specialty['JobfamilyFILTER'] == jobFam &&
-        specialty['RoleFILTER'] == role &&
-        specialty['RoleLevelFILTER'] == roleLevel
+        specialty['JobfamilyFILTER'] == localJobFam &&
+        specialty['RoleFILTER'] == localRole &&
+        specialty['RoleLevelFILTER'] == localRoleLevel
       ))
 
       setSavedSkills({});
@@ -151,23 +151,23 @@ const App = () => {
     } else {
       setSavedSkills(localSavedSkills);
 
-      const args = {
-        submittedReturn: {
-          "JobFamily": jobFam,
-          "Role": role,
-          "Role Level": roleLevel,
-          "LMEmail": lmEmail,
-          "Skills": savedSkills,
-          "Completed": toValidate ? "Yes" : "No",
-        },
-        onSubmit: onSuccess(toValidate),
+      const onSubmit = onSuccess(toValidate);
+      const params = {
+        "JobFamily": jobFam,
+        "Role": role,
+        "Role Level": roleLevel,
+        "LMEmail": lmEmail,
+        "Skills": savedSkills,
+        "Completed": toValidate ? "Yes" : "No",
       }
+
+      navigate('/submitting')
 
       // dev mode
       if (typeof google == 'undefined') {
-        saveDataSuccess(...Object.values(args));
+        saveDataSuccess(null, { onSubmit });
       } else {
-        saveData(args);
+        saveData(params, onSubmit);
       }
     }
   }
@@ -243,6 +243,25 @@ const App = () => {
               }
             }
           />
+        </Page>
+      }
+    />
+    <Route path="/submitting"
+      element={
+        <Page>
+          <div className="govuk-grid-row">
+            <div className="govuk-grid-column-one-third">
+              <Spinner
+                fill="black"
+                height="50px"
+                title="Example Spinner implementation"
+                width="50px"
+              />
+            </div>
+            <div className="govuk-grid-column-two-thirds">
+              <h1>Submitting your return, please wait...</h1>
+            </div>
+          </div>
         </Page>
       }
     />

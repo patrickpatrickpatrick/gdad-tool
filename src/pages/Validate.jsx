@@ -1,4 +1,4 @@
-import {
+ import {
   Accordion,
   ValidateTable,
   ValidateForm,
@@ -82,17 +82,22 @@ const Validate = ({
               heading: getNameFromEmail(Name),
               summary: <Summary {...{ LineManagerApproved, Completed, Name }} />,
               content: <>
-                <ValidateTable
-                  {
-                    ...{
-                      ...skillsAndRole
+                {
+                  Completed ? <ValidateTable
+                    {
+                      ...{
+                        ...skillsAndRole
+                      }
                     }
-                  }
-                />
-                <ValidateForm
-                  name={Name}
-                  onSubmit={onSubmit}
-                />
+                  /> : <Paragraph>Not yet completed submission for validation.</Paragraph>
+                }
+
+                { Completed &&
+                  <ValidateForm
+                    name={Name}
+                    onSubmit={onSubmit}
+                  />
+                }
               </>
             }
           })

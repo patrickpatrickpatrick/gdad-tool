@@ -1,3 +1,11 @@
+function jsonParser(str) {
+  try {
+    return JSON.parse(reportReturn["Skills"])
+  } catch (e) {
+    return {}
+  }
+}
+
 export const processData = (d, dict) => {
   let { returns, framework, reportReturns } = JSON.parse(d);
 
@@ -28,12 +36,18 @@ export const processData = (d, dict) => {
   setRole(returns[0]["Role"]);
   setJobFam(returns[0]["JobFamily"]);
   setRoleLevel(returns[0]["RoleLevel"]);
-  setSavedSkills(JSON.parse(returns[0]["Skills"]));
+
+  try {
+    setSavedSkills(jsonParser(returns[0]["Skills"]));
+  } catch {
+    setSavedSkills({});
+  }
+
   setLmEmail(returns[0]["LMEmail"]);
 
   setReportReturns(reportReturns.map(reportReturn => ({
     ...reportReturn,
-    ["Skills"]: JSON.parse(reportReturn["Skills"])
+    ["Skills"]: jsonParser(reportReturn["Skills"])
   })));
 
   setSkills(framework.filter((specialty) =>
@@ -49,34 +63,37 @@ export const processData = (d, dict) => {
   setValidated(returns[0]["LineManagerApproved"] == 'Yes')
 
   if (returns[0]["RoleLevel"] && returns[0]["RoleLevel"].length > 0) {
-    navigate('/submit-specialism');
-  } else {
     navigate('/submit-skills');
+  } else {
+    navigate('/submit-specialism');
   }
 }
 
-export const saveDataSuccess = (returnVal, { onSuccess }) => {
-  onSuccess();
+export const saveDataSuccess = (returnVal, { onSubmit }) => {
+  onSubmit();
 }
 
 export const saveReportSuccess = (returnVal, { onSuccess }) => {
  onSuccess();
 }
 
-export const saveReport = (userObject) => google.script
+export const saveReport = (params, saveDataSuccess) => google.script
+  .run
+  .withSuccessHandler(processData)
+  .withUserObject({ onSubmit: saveDataSuccess })
+  .getData(params);
+
+export const getData = userObject => google.script
   .run
   .withSuccessHandler(processData)
   .withUserObject(userObject)
   .getData();
 
-export const getData = (userObject) => google.script
-  .run
-  .withSuccessHandler(processData)
-  .withUserObject(userObject)
-  .getData();
-
-export const saveData = (userObject) => google.script
+export const saveData = (params, saveDataSuccess) => google.script
   .run
   .withSuccessHandler(saveDataSuccess)
-  .withUserObject(userObject)
-  .saveReturn();
+  .withFailureHandler((err) => {
+    console.log(err)
+  })
+  .withUserObject({ onSubmit: saveDataSuccess })
+  .saveReturn(params);
