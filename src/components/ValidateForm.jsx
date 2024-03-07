@@ -9,11 +9,13 @@ import { getNameFromEmail } from './../util';
 
 const ValidateForm = ({
   name,
-  onSubmit
+  onSubmit,
+  passedProbation,
+  validatedByLm,
 }) => {
   const [submitting, setSubmitting] = useState(null);
-  const [passedProbation, setPassedProbation] = useState("");
-  const [validatedByLm, setValidatedByLm] = useState("");
+  const [localPassedProbation, setLocalPassedProbation] = useState("No");
+  const [localValidatedByLm, setLocalValidatedByLm] = useState("No");
 
   const Form = () => <>
     <div
@@ -22,8 +24,8 @@ const ValidateForm = ({
       <Select
         label={"Passed probation"}
         input={{
-          onChange: (e) => setPassedProbation(e.target.value),
-          value: passedProbation
+          onChange: (e) => setLocalPassedProbation(e.target.value),
+          value: localPassedProbation
         }}
       >
         <option value="No">No</option>
@@ -37,8 +39,8 @@ const ValidateForm = ({
       <Select
         label={"Validated by line manager"}
         input={{
-          onChange: (e) => setValidatedByLm(e.target.value),
-          value: validatedByLm
+          onChange: (e) => setLocalValidatedByLm(e.target.value),
+          value: localValidatedByLm
         }}
       >
         <option value="No">No</option>
@@ -51,8 +53,8 @@ const ValidateForm = ({
         e.preventDefault();
         onSubmit(
           name,
-          passedProbation,
-          validatedByLm,
+          localPassedProbation,
+          localValidatedByLm,
           setSubmitting,
         );
       }}

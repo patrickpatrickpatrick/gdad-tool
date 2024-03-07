@@ -75,6 +75,7 @@ const Validate = ({
             Name,
             Completed,
             LineManagerApproved,
+            PassedProbation,
             ...skillsAndRole
           }) => {
 
@@ -96,6 +97,8 @@ const Validate = ({
                   <ValidateForm
                     name={Name}
                     onSubmit={onSubmit}
+                    validatedByLm={LineManagerApproved}
+                    passedProbation={PassedProbation}
                   />
                 }
               </>

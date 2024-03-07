@@ -10,7 +10,7 @@ const Accordion = ({
   ...attributes  
 }) => {
   const [ accordionInstance, setAccordionInstance ] = useState(null);
-  const [ govukAccordion, setGovukAccordion ] = useState(null)
+  const [ govukAccordion, setGovukAccordion ] = useState(null);
 
   // stops the accordion executing multiple times
   useEffect(() => {
