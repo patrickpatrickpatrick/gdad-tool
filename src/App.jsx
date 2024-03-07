@@ -128,13 +128,28 @@ const App = () => {
       setRoleLevel(localRoleLevel);
       setJobFam(localJobFam);
 
-      setSkills(framework.filter((specialty) =>
+      setSpecialism({
+        ["Role"]: localRole,
+        ["RoleLevel"]: localRoleLevel,
+        ["JobFamily"]: localJobFam,
+      })
+
+      let frameworkFiltered = framework.filter((specialty) =>
         specialty['JobfamilyFILTER'] == localJobFam &&
         specialty['RoleFILTER'] == localRole &&
         specialty['RoleLevelFILTER'] == localRoleLevel
-      ))
+      )
 
-      setSavedSkills({});
+      setSkills(frameworkFiltered)
+
+      setSavedSkills(frameworkFiltered.reduce((acc, skill) => ({
+        ...acc,
+        [skill.SkillNameFILTER]: {
+          "Evidence": "",
+          "Score": "",
+          "Comments": "",
+        },
+      }), {}));
     }
 
     setLmEmail(localLmEmail);

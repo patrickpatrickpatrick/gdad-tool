@@ -17,7 +17,7 @@ export const classifyScore = (savedSkills) => {
 
   switch(true){
     case score < 1:
-      return "";
+      return "N/A";
     case score < 1.5:
       return "Developing";
     case score < 2:
