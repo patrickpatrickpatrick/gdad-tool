@@ -84,14 +84,14 @@ export const saveReportSuccess = (returnVal, { onSubmit }) => {
   onSubmit();
 }
 
-export const saveReport = (params, saveDataSuccess) => google.script
+export const saveReport = (report, saveDataSuccess) => google.script
   .run
   .withSuccessHandler(saveReportSuccess)
   .withFailureHandler((err) => {
     console.log(err)
   })  
   .withUserObject({ onSubmit: saveDataSuccess })
-  .getData(params);
+  .lmValidate(report["Name"], report);
 
 export const getData = userObject => google.script
   .run
