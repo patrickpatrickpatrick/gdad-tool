@@ -7,7 +7,7 @@ const Page = ({
   leadParagraph,
   completed,
   validated
-}) => <GovUkPage header={<CustomNav />}>
+}) => <GovUkPage header={<CustomNav validated={validated} />}>
   {
     validated && <div
       className="govuk-!-margin-bottom-5"

@@ -37,6 +37,6 @@ export const devGoogle = (parameters) => {
   fetch('/return.json').then(
     response => response.json()
   ).then(({ framework, returns }) => {
-    processData(JSON.stringify({ framework, returns, reportReturns: returns }), parameters)
+    processData(JSON.stringify({ framework, returns, reportReturns: null }), parameters)
   })
 }

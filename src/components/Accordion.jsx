@@ -74,7 +74,6 @@ const Accordion = ({
       <div
         {...attributes}
         className={`govuk-accordion`}
-        data-module="govuk-accordion"
         ref={accordionRef}
       >
         {innerHtml}

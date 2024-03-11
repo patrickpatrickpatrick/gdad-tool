@@ -90,6 +90,7 @@ const App = () => {
 
     const report = {
       ...reportReturns[indexOfReport],
+      ["Skills"]: JSON.stringify(reportReturns[indexOfReport]["Skills"]),
       ["LineManagerApproved"]: validatedByLm,
       ["PassedProbation"]: passedProbation,
     }
@@ -118,7 +119,10 @@ const App = () => {
 
     setReportReturns([
       ...reportReturns.slice(0, indexOfReport),
-      report,
+      {
+        ...report,
+        ["Skills"]: JSON.parse(report["Skills"]),
+      },
       ...reportReturns.slice(indexOfReport + 1, reportReturns.length),
     ]);
 
@@ -225,6 +229,7 @@ const App = () => {
               setRoleLevel,
               specialism,
               lmEmail,
+              validated,
             }}
           />
         </Page>

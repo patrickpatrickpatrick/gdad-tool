@@ -1,7 +1,7 @@
 export const pageText = {
   "submit": {
     "heading": "Your Submission",
-    "leadParagraph": "Use this page to submit your DDaT skills assessment"
+    "leadParagraph": "Use this page to submit your Government Digital and Data Assessment skills assessment"
   },
   "validate": {
     "heading": "Validate Your Line Report Submissions",

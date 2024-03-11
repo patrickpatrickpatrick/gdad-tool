@@ -46,7 +46,7 @@ export const processData = (d, dict) => {
 
   setLmEmail(returns[0]["LMEmail"]);
 
-  setReportReturns(reportReturns.map(reportReturn => ({
+  setReportReturns(!reportReturns ? [] : reportReturns.map(reportReturn => ({
     ...reportReturn,
     ["Skills"]: jsonParser(reportReturn["Skills"])
   })));

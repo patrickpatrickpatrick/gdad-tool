@@ -17,6 +17,11 @@ const ValidateForm = ({
   const [localPassedProbation, setLocalPassedProbation] = useState("No");
   const [localValidatedByLm, setLocalValidatedByLm] = useState("No");
 
+  useEffect(() => {
+    setLocalPassedProbation(passedProbation);
+    setLocalValidatedByLm(validatedByLm);
+  }, [passedProbation, validatedByLm])
+
   const Form = () => <>
     <div
       className="govuk-!-margin-bottom-3"

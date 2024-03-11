@@ -15,18 +15,28 @@ import { useRef, useEffect } from 'react';
 
 const nameToId = name => name.replace(/\@|\./g, '')
 
-const Summary = ({ Completed, LineManagerApproved, Name }) => <div>
+const Summary = ({ Completed, LineManagerApproved, Name, index }) => <div>
   <span
-    id={`${nameToId(name)}-completed`}
+    id={`${nameToId(Name)}-${index}-completed`}
     style={{
-      marginRight: "20px"
+      marginRight: "20px",
+      color: Completed == "Yes" ? "green" : "red",
     }}
-    completed={Completed == "Yes"}
-  ></span>
+  >
+    {
+      Completed == "Yes" && "Completed" || "Not Completed"
+    }
+  </span>
   <span
-    id={`${nameToId(name)}-approved`}
-    completed={LineManagerApproved == "Yes"}
-  ></span>
+    id={`${nameToId(Name)}-${index}-approved`}
+    style={{
+      color: LineManagerApproved == "Yes" ? "green" : "red",
+    }}    
+  >
+    {
+      LineManagerApproved == "Yes" && "Validated" || "Not Validated"
+    }  
+  </span>
 </div>
 
 const Validate = ({
@@ -46,9 +56,9 @@ const Validate = ({
         Name,
         Completed,
         LineManagerApproved,
-      }) => {
-        const completedSpan = accordionRef.current.querySelector(`#${nameToId(name)}-completed`);
-        const approvedSpan = accordionRef.current.querySelector(`#${nameToId(name)}-approved`);
+      }, index) => {
+        const completedSpan = accordionRef.current.querySelector(`#${nameToId(Name)}-${index}-completed`);
+        const approvedSpan = accordionRef.current.querySelector(`#${nameToId(Name)}-${index}-approved`);
 
         if (completedSpan) {
           completedSpan.innerText = Completed == "Yes"
@@ -67,45 +77,55 @@ const Validate = ({
 
   return (
     <>
-      <Accordion
-        id={"accordion-default"}
-        accordionRef={accordionRef}
-        items={
-          reportReturns.map(({
-            Name,
-            Completed,
-            LineManagerApproved,
-            PassedProbation,
-            ...skillsAndRole
-          }) => {
+      {
+        reportReturns && !!reportReturns.length &&
+          <Accordion
+            id={"accordion-default"}
+            accordionRef={accordionRef}
+            items={
+              reportReturns.map(({
+                Name,
+                Completed,
+                LineManagerApproved,
+                PassedProbation,
+                ...skillsAndRole
+              }, index) => {
 
-            return {
-              heading: getNameFromEmail(Name),
-              summary: <Summary {...{ LineManagerApproved, Completed, Name }} />,
-              content: <>
-                {
-                  Completed ? <ValidateTable
+                return {
+                  heading: getNameFromEmail(Name),
+                  summary: <Summary {...{ LineManagerApproved, Completed, Name, index }} />,
+                  content: <>
                     {
-                      ...{
-                        ...skillsAndRole
-                      }
+                      Completed ? <ValidateTable
+                        {
+                          ...{
+                            ...skillsAndRole
+                          }
+                        }
+                      /> : <Paragraph>
+                        Not yet completed submission for validation.
+                      </Paragraph>
                     }
-                  /> : <Paragraph>Not yet completed submission for validation.</Paragraph>
-                }
 
-                { Completed &&
-                  <ValidateForm
-                    name={Name}
-                    onSubmit={onSubmit}
-                    validatedByLm={LineManagerApproved}
-                    passedProbation={PassedProbation}
-                  />
+                    { Completed &&
+                      <ValidateForm
+                        name={Name}
+                        onSubmit={onSubmit}
+                        validatedByLm={LineManagerApproved}
+                        passedProbation={PassedProbation}
+                      />
+                    }
+                  </>
                 }
-              </>
+              })
             }
-          })
+          />        
         }
-      />
+        {
+          reportReturns && !reportReturns.length && <Paragraph>
+            No line reports to validate
+          </Paragraph>
+        }
     </>
   )
 }
