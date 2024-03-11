@@ -19,7 +19,7 @@ const CustomNav = ({ validated }) => {
   return (
     <TopNav
       company={<span>Operational Data & Tools Team</span>}
-      serviceTitle={<TopNav.NavLink href="#">Government Data Digital Skills Return</TopNav.NavLink>}
+      serviceTitle={<TopNav.NavLink href="#">Government Digital and Data skills return</TopNav.NavLink>}
     >
       {
         !validated && <NavLink path="/submit-specialism" match="submit" name="Your Submission" />
