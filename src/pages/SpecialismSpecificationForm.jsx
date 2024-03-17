@@ -2,8 +2,8 @@ import { Button, Paragraph, InputField } from 'govuk-react';
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { SpecialismSelect } from './../../components';
-import { getUniqElements } from './../../util';
+import { SpecialismSelect } from './../components';
+import { getUniqElements } from './../util';
 
 const SpecialismSpecificationForm = ({
   framework,

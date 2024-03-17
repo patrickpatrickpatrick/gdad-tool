@@ -12,8 +12,6 @@ function jsonParser(str) {
 }
 
 export const processData = (d, dict) => {
-  console.log(JSON.parse(d))
-
   let { returns, framework, reportReturns, returns22, returns23, } = JSON.parse(d);
 
   let {
@@ -79,8 +77,14 @@ export const processData = (d, dict) => {
   }
   
   setPreviousSubmits({
-    returns22: jsonParser(returns22[0]["Skills"]),
-    returns23: jsonParser(returns23[0]["Skills"]),
+    returns22: {
+      ...returns22[0],
+      Skills: returns22[0] && jsonParser(returns22[0]["Skills"]), 
+    },
+    returns23: {
+      ...returns23[0],
+      Skills: returns23[0] && jsonParser(returns23[0]["Skills"]), 
+    }
   })
 }
 

@@ -277,7 +277,7 @@ const App = () => {
         },
         {
           path: "/previous-submits",
-          children: <PreviousYears />
+          children: <PreviousYears {...{ ...previousSubmits }} />
         },
         {
           path: "/success-submit",

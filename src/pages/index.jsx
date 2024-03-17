@@ -1,8 +1,6 @@
 import Validate from './Validate';
 import PreviousYears from './PreviousYears';
-import {
-  SpecialismSpecificationForm,
-} from './submit';
+import SpecialismSpecificationForm from './SpecialismSpecificationForm';
 import SubmitReturn from './SubmitReturn';
 import SuccessSubmit from './SuccessSubmit';
 import SubmitSkills from './SubmitSkills';
