@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { SpecialismSelect } from './../components';
 import { getUniqElements } from './../util';
 
+// to do... validate the email address
+
 const SpecialismSpecificationForm = ({
   framework,
   selectedRoles,
@@ -102,10 +104,12 @@ const SpecialismSpecificationForm = ({
           input={{
             value: localLmEmail,
             className: "govuk-!-margin-bottom-3",
-            onChange: (e) => setLocalLmEmail(e.target.value)
+            onChange: (e) => setLocalLmEmail(e.target.value),
+            type: "email",
+            autocomplete: "disabled"
           }}
         >
-          Your line manager (if correct, don't edit it)
+          Your line manager's email address (if correct, don't edit it)
         </InputField>
 
         <Button
