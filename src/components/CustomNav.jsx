@@ -13,7 +13,7 @@ const NavLink = ({ path, name, match }) => <div className={
   </Link>
 </div>
 
-const CustomNav = ({ validated }) => {
+const CustomNav = ({ completed }) => {
   const location = useLocation();
 
   return (
@@ -22,12 +22,13 @@ const CustomNav = ({ validated }) => {
       serviceTitle={<TopNav.NavLink href="#">Government Digital and Data skills return</TopNav.NavLink>}
     >
       {
-        !validated && <NavLink path="/submit-specialism" match="submit" name="Your Submission" />
+        !completed && <NavLink path="/submit-specialism" match="submit" name="Your Submission" />
       }
       {
-        validated && <NavLink path="/submit-skills" match="submit" name="Your Submission" />
+        completed && <NavLink path="/submit-skills" match="submit" name="Your Submission" />
       }
       <NavLink path="/validate" match="validate" name="Validate Your Line Report Submissions" />
+      <NavLink path="/previous-submits" match="previous" name="Previous Submissions" />
     </TopNav>
   )
 } 

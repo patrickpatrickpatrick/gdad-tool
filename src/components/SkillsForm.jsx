@@ -14,9 +14,9 @@ import {
   BackLink,
 } from 'govuk-react';
 import { Link } from "react-router-dom";
-import { LimitTextArea, ErrorSummary } from './../../components';
+import { LimitTextArea, ErrorSummary } from './index';
 
-import { updateSavedSkills, createErrors } from './../../util';
+import { updateSavedSkills, createErrors } from './../util';
 
 const SkillsForm = ({
   role,

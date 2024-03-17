@@ -1,6 +1,6 @@
  import {
   Accordion,
-  ValidateTable,
+  SkillsTable,
   ValidateForm,
 } from './../components';
 import { getNameFromEmail } from './../util';
@@ -96,7 +96,7 @@ const Validate = ({
                   summary: <Summary {...{ LineManagerApproved, Completed, Name, index }} />,
                   content: <>
                     {
-                      Completed ? <ValidateTable
+                      Completed ? <SkillsTable
                         {
                           ...{
                             ...skillsAndRole

@@ -1,6 +1,6 @@
 import { Table } from 'govuk-react';
 
-const ValidateTable = ({
+const SkillsTable = ({
   JobFamily,
   Role,
   RoleLevel,
@@ -79,4 +79,4 @@ const ValidateTable = ({
   }
 </div>
 
-export default ValidateTable;
+export default SkillsTable;

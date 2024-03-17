@@ -8,9 +8,15 @@ import {
   Link,
 } from "react-router-dom";
 
-import { Page, ValidateTable } from './components';
-import { SpecialismSpecificationForm, SkillsForm } from './pages/submit';
-import { Validate } from './pages';
+import { Page } from './components';
+import { 
+  Validate,
+  SpecialismSpecificationForm,
+  PreviousYears,
+  SubmitReturn,
+  SuccessSubmit,
+  SubmitSkills,
+} from './pages';
 import { pageText } from './constants';
 
 import {
@@ -39,6 +45,7 @@ const App = () => {
   const [savedSkills, setSavedSkills] = useState({});
   const [lmEmail, setLmEmail] = useState("");
   const [validated, setValidated] = useState(false);
+  const [previousSubmits, setPreviousSubmits] = useState([]);
 
   const [reportReturns, setReportReturns] = useState([]);
 
@@ -67,6 +74,7 @@ const App = () => {
       setLoading,
       setCompleted,
       setValidated,
+      setPreviousSubmits,
       navigate,
     }
 
@@ -204,20 +212,16 @@ const App = () => {
   }
 
   return <Routes>
-    <Route
-      path="/"
-      element={
-        <LoadingBox loading={true}>
-          <div aria-busy={loading} aria-live="polite" >
-            <Page {...{...pageText["loading"]}} />
-          </div>
-        </LoadingBox>
-      }
-    />
-    <Route path="/submit-specialism"
-      element={
-        <Page {...{ ...pageText["submit"], completed }}>
-          <SpecialismSpecificationForm
+    {
+      [
+        {
+          path: "/",
+          pageText: pageText["loading"]
+        },
+        {
+          path: "/submit-specialism",
+          pageText: pageText["submit"],
+          children: <SpecialismSpecificationForm
             onSubmit={onSubmitSpecialismSpecificationForm}
             {...{
               framework,
@@ -232,24 +236,17 @@ const App = () => {
               validated,
             }}
           />
-        </Page>
-      }
-    />
-    <Route path="/submit-skills"
-      element={
-        <Page {...{ ...pageText["submit"], completed, validated }}>
-          {
-            validated ? <ValidateTable
-              {
-                ...{
-                  JobFamily: jobFam,
-                  Role: role,
-                  RoleLevel: roleLevel,
-                  Skills: savedSkills
-                }
-              }
-            /> : <SkillsForm
-              {...{
+        },
+        {
+          path: "/submit-skills",
+          pageText: pageText["submit"],
+          children: <SubmitSkills
+            {
+              ...{
+                JobFamily: jobFam,
+                Role: role,
+                RoleLevel: roleLevel,
+                Skills: savedSkills,
                 skills,
                 jobFam,
                 role,
@@ -259,15 +256,13 @@ const App = () => {
                 errors,
                 onSubmit,
               }
-            }/>
-          }
-        </Page>
-      }
-    />
-    <Route path="/validate"
-      element={
-        <Page {...{ ...pageText["validate"] }}>
-          <Validate
+            }
+          />
+        },
+        {
+          path: "/validate",
+          pageText: pageText["validate"],
+          children: <Validate
             onSubmit={onSubmitLMReport}
             {
               ...{
@@ -275,44 +270,34 @@ const App = () => {
               }
             }
           />
-        </Page>
-      }
-    />
-    <Route path="/submitting"
-      element={
-        <Page>
-          <div className="govuk-grid-row">
-            <div className="govuk-grid-column-one-third">
-              <Spinner
-                fill="black"
-                height="50px"
-                title="Example Spinner implementation"
-                width="50px"
-              />
-            </div>
-            <div className="govuk-grid-column-two-thirds">
-              <h1>Submitting your return, please wait...</h1>
-            </div>
-          </div>
-        </Page>
-      }
-    />
-    <Route path="/success-submit"
-      element={
-        <Page>
-          <Panel
-            title={
-              !validated ?
-                "Form Saved Successfully" : "Form Submitted for Validation"
-            }
-          >
-            Your provisional score is {classifyScore(savedSkills)}
-            <br/><br/>
-            <Link to="/submit-skills">Click here to edit your submission</Link>
-          </Panel>
-        </Page>
-      }
-    />
+        },
+        {
+          path: "/submitting",
+          children: <SubmitReturn />
+        },
+        {
+          path: "/previous-submits",
+          children: <PreviousYears />
+        },
+        {
+          path: "/success-submit",
+          children: <SuccessSubmit {...{ validated, savedSkills }} />
+        }
+      ].map(({
+        path,
+        pageText,
+        children
+      }) => <Route key={path} {...{ path }}
+        element={
+            <Page {...{...pageText, completed, validated}}>
+              {
+                children
+              }
+            </Page>
+          }
+        />
+      )
+    }
   </Routes>
 }
 

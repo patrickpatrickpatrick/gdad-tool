@@ -12,7 +12,9 @@ function jsonParser(str) {
 }
 
 export const processData = (d, dict) => {
-  let { returns, framework, reportReturns } = JSON.parse(d);
+  console.log(JSON.parse(d))
+
+  let { returns, framework, reportReturns, returns22, returns23, } = JSON.parse(d);
 
   let {
     setFramework,
@@ -27,6 +29,7 @@ export const processData = (d, dict) => {
     setLoading,
     setCompleted,
     setValidated,
+    setPreviousSubmits,
     navigate,
   } = dict;
 
@@ -74,6 +77,11 @@ export const processData = (d, dict) => {
   } else {
     navigate('/submit-specialism');
   }
+  
+  setPreviousSubmits({
+    returns22: jsonParser(returns22[0]["Skills"]),
+    returns23: jsonParser(returns23[0]["Skills"]),
+  })
 }
 
 export const saveDataSuccess = (returnVal, { onSubmit }) => {
