@@ -148,6 +148,9 @@ const App = () => {
       (localRole !== role) ||
       (localRoleLevel !== roleLevel)
     ) {
+      // don't persist old errors if user switches specialism...
+      setErrors({});
+
       setRole(localRole);
       setRoleLevel(localRoleLevel);
       setJobFam(localJobFam);

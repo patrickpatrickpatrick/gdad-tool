@@ -7,6 +7,10 @@ import {
 } from 'govuk-react';
 import { getNameFromEmail } from './../util';
 
+// to do
+// form should say error if error occurs
+// should not display if validated
+
 const ValidateForm = ({
   name,
   onSubmit,
