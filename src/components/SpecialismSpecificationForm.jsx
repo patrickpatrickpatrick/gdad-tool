@@ -2,10 +2,8 @@ import { Button, Paragraph, InputField } from 'govuk-react';
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { SpecialismSelect } from './../components';
-import { getUniqElements } from './../util';
-
-// to do... validate the email address
+import SpecialismSelect from './SpecialismSelect';
+import { getUniqElements, validateEmail } from './../util';
 
 const SpecialismSpecificationForm = ({
   framework,
@@ -18,6 +16,7 @@ const SpecialismSpecificationForm = ({
   validated,
   lmEmail,
   onSubmit,
+  setErrors
 }) => {
   const navigate = useNavigate();
 
@@ -58,7 +57,7 @@ const SpecialismSpecificationForm = ({
       getUniqElements(
         framework.filter(x => (x['RoleFILTER'] == localRole && x['JobfamilyFILTER'] == localJobFam)) , 'RoleLevelFILTER'
       )
-    )    
+    )
   }, [localJobFam])
 
   useEffect(() => {
@@ -102,6 +101,7 @@ const SpecialismSpecificationForm = ({
 
         <InputField
           input={{
+            id: 'lm-field',
             value: localLmEmail,
             className: "govuk-!-margin-bottom-3",
             onChange: (e) => setLocalLmEmail(e.target.value),
@@ -121,17 +121,25 @@ const SpecialismSpecificationForm = ({
             )
           }
           onClick={() => {
-           navigate("/submit-skills");
-           onSubmit({
-            localRole,
-            localJobFam,
-            localRoleLevel,
-            localLmEmail
-           }); 
+            if (validateEmail(localLmEmail)) {
+              setErrors(null);
+              navigate("/submit-skills");
+              onSubmit({
+                localRole,
+                localJobFam,
+                localRoleLevel,
+                localLmEmail
+              });
+            } else {
+              setErrors([{
+                target: 'lm-field',
+                text: "Please enter a valid line manager email"
+              }]);
+            }
           }}
         >
           Continue to skills for selected role level
-        </Button>        
+        </Button>
       </div>
     </div>
   </form>)

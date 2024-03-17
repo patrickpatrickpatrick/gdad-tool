@@ -11,11 +11,11 @@ import {
 import { Page } from './components';
 import { 
   Validate,
-  SpecialismSpecificationForm,
   PreviousYears,
   SubmitReturn,
   SuccessSubmit,
   SubmitSkills,
+  SpecialismSpecification
 } from './pages';
 import { pageText } from './constants';
 
@@ -224,7 +224,7 @@ const App = () => {
         {
           path: "/submit-specialism",
           pageText: pageText["submit"],
-          children: <SpecialismSpecificationForm
+          children: <SpecialismSpecification
             onSubmit={onSubmitSpecialismSpecificationForm}
             {...{
               framework,
@@ -279,7 +279,8 @@ const App = () => {
           children: <SubmitReturn />
         },
         {
-          path: "/previous-submits",
+          path: "/previous-years",
+          pageText: pageText["previous"],
           children: <PreviousYears {...{ ...previousSubmits }} />
         },
         {

@@ -7,6 +7,10 @@ export const pageText = {
     "heading": "Validate Your Line Report Submissions",
     "leadParagraph": "Please validate your line report submissions",
   },
+  "previous": {
+    "heading": "Previous Submissions",
+    "leadParagraph": "View your past submissions",
+  },
   "loading": {
     "heading": "Fetching data",
     "leadParagraph": "Please Wait"

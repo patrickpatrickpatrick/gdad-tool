@@ -1,5 +1,5 @@
 import { Accordion, SkillsTable } from './../components';
-import { Heading } from 'govuk-react'
+import { Paragraph } from 'govuk-react'
 import { useRef } from 'react';
 
 const PreviousYears = ({
@@ -10,12 +10,12 @@ const PreviousYears = ({
 
   let items = [
     {
-      heading: "Submission for 2022",
-      ...returns22
-    },
-    {
       heading: "Submission for 2023",
       ...returns23
+    },
+    {
+      heading: "Submission for 2022",
+      ...returns22
     }].filter(x => x["JobFamily"]).map(({
       heading,
       ...skillsAndRole
@@ -40,9 +40,9 @@ const PreviousYears = ({
         />
       }
       {
-        !items.length && <Heading>
+        !items.length && <Paragraph>
           No previous submissions found
-        </Heading>
+        </Paragraph>
       }
     </>
   )

@@ -1,6 +1,8 @@
 import { processData } from './googleRoutines';
 
-export const getNameFromEmail = (email) => email.match(/(.*)@.*/)[1]
+export const validateEmail = email => email.match(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)
+
+export const getNameFromEmail = email => email.match(/(.*)@.*/)[1]
 .split('.')
 .map(([firstLetter, ...restLetters]) => [ firstLetter.toUpperCase(), ...restLetters ].join('') )
 .join(' ')

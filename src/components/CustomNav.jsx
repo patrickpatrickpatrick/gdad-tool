@@ -28,7 +28,7 @@ const CustomNav = ({ completed }) => {
         completed && <NavLink path="/submit-skills" match="submit" name="Your Submission" />
       }
       <NavLink path="/validate" match="validate" name="Validate Your Line Report Submissions" />
-      <NavLink path="/previous-submits" match="previous" name="Previous Submissions" />
+      <NavLink path="/previous-years" match="previous" name="Previous Submissions" />
     </TopNav>
   )
 } 
