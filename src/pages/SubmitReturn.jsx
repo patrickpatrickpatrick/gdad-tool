@@ -7,7 +7,6 @@ const SubmitReturn = () => <div className="govuk-grid-row">
     <Spinner
       fill="black"
       height="50px"
-      title="Example Spinner implementation"
       width="50px"
     />
   </div>
