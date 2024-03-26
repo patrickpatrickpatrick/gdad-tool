@@ -117,7 +117,7 @@ const SpecialismSpecificationForm = ({
             !(
               localJobFam.length &&
               allRoles.find(x => x == localRole) &&
-              allRoleLevels.find(x => x == localRoleLevel)
+              allRoleLevels.find(y => y == localRoleLevel)
             )
           }
           onClick={() => {
@@ -128,7 +128,7 @@ const SpecialismSpecificationForm = ({
                 localRole,
                 localJobFam,
                 localRoleLevel,
-                localLmEmail
+                localLmEmail: localLmEmail.toLowerCase(),
               });
             } else {
               setErrors([{

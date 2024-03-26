@@ -46,7 +46,7 @@ export const processData = (d, dict) => {
 
   setSavedSkills(jsonParser(returns[0]["Skills"]));
 
-  setLoaded(Object.keys(jsonParser(returns[0]["Skills"])));
+  setLoaded(!!Object.keys(jsonParser(returns[0]["Skills"])).length);
 
   setLmEmail(returns[0]["LMEmail"]);
 

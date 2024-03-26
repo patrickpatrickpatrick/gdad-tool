@@ -10,7 +10,7 @@ export const createErrors = (errors) => Object.keys(errors).reduce(
   }
 ,[]);
 
-export const validateInput = (input, skills) => {
+export const validateInput = (input, skills, limit) => {
   let tempErrors = {}
 
   skills.map(({ SkillNameFILTER }) => {
@@ -24,22 +24,22 @@ export const validateInput = (input, skills) => {
       }
     }
 
-    if (input[SkillNameFILTER]["Comments"].length > 3000) {
+    if (input[SkillNameFILTER]["Comments"].length > limit) {
       tempErrors = {
         ...tempErrors,
         [SkillNameFILTER]: {
           ...tempErrors[SkillNameFILTER],
-          ["Comments"]: `Please reduce comments to 3000 or less characters`
+          ["Comments"]: `Please reduce comments to ${limit} or less characters`
         }
       }
     }
 
-    if (input[SkillNameFILTER]["Evidence"].length > 3000) {
+    if (input[SkillNameFILTER]["Evidence"].length > limit) {
       tempErrors = {
         ...tempErrors,
         [SkillNameFILTER]: {
           ...tempErrors[SkillNameFILTER],
-          ["Evidence"]: `Please reduce evidence to 3000 or less characters`
+          ["Evidence"]: `Please reduce evidence to ${limit} or less characters`
         }
       }
     }

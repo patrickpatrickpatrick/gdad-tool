@@ -207,7 +207,7 @@ const App = () => {
     toValidate,
     localSavedSkills
   }) => {
-    const validation = validateInput(localSavedSkills, skills);
+    const validation = validateInput(localSavedSkills, skills, 5000);
 
     if (Object.keys(validation).length) {
       setErrors(validation)
@@ -230,11 +230,11 @@ const App = () => {
         navigate('/saving')
       }
 
-      // if (typeof google == 'undefined') {
-      //   saveDataSuccess(null, { onSubmit });
-      // } else {
-      //   saveData(params, onSubmit);
-      // }
+      if (typeof google == 'undefined') {
+        saveDataSuccess(null, { onSubmit });
+      } else {
+        saveData(params, onSubmit);
+      }
     }
   }
 
