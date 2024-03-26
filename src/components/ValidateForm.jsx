@@ -17,9 +17,15 @@ const ValidateForm = ({
   passedProbation,
   validatedByLm,
 }) => {
-  const [submitting, setSubmitting] = useState(null);
+  const [status, setStatus] = useState({
+    submitting: null,
+    success: false,
+    error: false,
+  });
   const [localPassedProbation, setLocalPassedProbation] = useState("No");
   const [localValidatedByLm, setLocalValidatedByLm] = useState("No");
+
+  const { submitting, success, error } = status;
 
   useEffect(() => {
     setLocalPassedProbation(passedProbation);
@@ -64,7 +70,7 @@ const ValidateForm = ({
           name,
           localPassedProbation,
           localValidatedByLm,
-          setSubmitting,
+          setStatus,
         );
       }}
     >
@@ -87,12 +93,7 @@ const ValidateForm = ({
           Submitting validation...
         </Paragraph>
       </>
-    }
-    {
-      !submitting && <Paragraph>
-        Submission successful
-      </Paragraph>
-    }
+    }   
   </div>
 
   return <form>
@@ -103,8 +104,23 @@ const ValidateForm = ({
       submitting != null && <SubmittingStatus submitting={submitting} />
     }
     {
-      !submitting && <Form />
-    }    
+      (!submitting && success) && <Paragraph>
+        Submission successful
+      </Paragraph>
+    }
+    {
+      (!submitting && error) && <Paragraph>
+        Submission failed
+      </Paragraph>
+    }     
+    {
+      (submitting == null && validatedByLm != 'Yes') && <Form />
+    }
+    {
+      validatedByLm == 'Yes' && <Paragraph>
+        Submission has been validated.
+      </Paragraph>
+    }
   </form>
 }
 

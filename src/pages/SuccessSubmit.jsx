@@ -5,15 +5,17 @@ import { classifyScore } from './../util';
 const SuccessSubmit = ({
   validated,
   savedSkills,
-}) => <Panel
-    title={
-      !validated ?
-        "Form Saved Successfully" : "Form Submitted for Validation"
-    }
-  >
+}) => <>
+    <Panel
+      title={
+        !validated ?
+          "Form Saved Successfully" : "Form Submitted for Validation"
+      }
+    >
     Your provisional score is {classifyScore(savedSkills)}
     <br/><br/>
-    <Link to="/submit-skills">Click here to edit your submission</Link>
   </Panel>
+  <Link to="/submit-skills">Click here to edit your submission</Link>
+</>
 
 export default SuccessSubmit;

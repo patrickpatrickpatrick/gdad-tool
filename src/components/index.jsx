@@ -4,6 +4,7 @@ import Page from './Page';
 import SpecialismSelect from './SpecialismSelect';
 import ErrorSummary from './ErrorSummary';
 import SkillsTable from './SkillsTable'
+import SpinnerText from './SpinnerText';
 import ValidateForm from './ValidateForm';
 import SkillsForm from './SkillsForm';
 import SpecialismSpecificationForm from './SpecialismSpecificationForm';
@@ -17,5 +18,6 @@ export {
   SpecialismSpecificationForm,
   SkillsTable,
   SkillsForm,
+  SpinnerText,
   ValidateForm,
 }

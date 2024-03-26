@@ -43,11 +43,11 @@ const SkillsTable = ({
       return <div
         key={skill}
       >
-        <h2>
+        <h3>
           {
             skill
           }
-        </h2>
+        </h3>
         <Table>
           <Table.Row>
             <Table.CellHeader>
@@ -65,14 +65,16 @@ const SkillsTable = ({
               { Comments }
             </Table.Cell>
           </Table.Row>
-          <Table.Row>
-            <Table.CellHeader>
-              Evidence
-            </Table.CellHeader>
-            <Table.Cell>
-              { Evidence }
-            </Table.Cell>
-          </Table.Row>
+          {
+            Evidence && <Table.Row>
+              <Table.CellHeader>
+                Evidence
+              </Table.CellHeader>
+              <Table.Cell>
+                { Evidence }
+              </Table.Cell>
+            </Table.Row>
+          }
         </Table>
       </div>
     })

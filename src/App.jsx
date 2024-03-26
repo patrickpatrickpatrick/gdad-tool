@@ -15,7 +15,8 @@ import {
   SubmitReturn,
   SuccessSubmit,
   SubmitSkills,
-  SpecialismSpecification
+  SpecialismSpecification,
+  SaveReturn,
 } from './pages';
 import { pageText } from './constants';
 
@@ -46,6 +47,7 @@ const App = () => {
   const [lmEmail, setLmEmail] = useState("");
   const [validated, setValidated] = useState(false);
   const [previousSubmits, setPreviousSubmits] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const [reportReturns, setReportReturns] = useState([]);
 
@@ -75,14 +77,14 @@ const App = () => {
       setCompleted,
       setValidated,
       setPreviousSubmits,
+      setLoaded,
       navigate,
     }
 
-    // dev mode
     if (typeof google !== 'undefined') {
       getData(parameters)
     } else {
-      devGoogle(parameters)
+      devGoogle(parameters) // fetch the json from public to fake a request
     }
   }, []);
 
@@ -90,11 +92,15 @@ const App = () => {
     name,
     passedProbation,
     validatedByLm,
-    setSubmitting
+    setStatus,
   ) => {
     const indexOfReport = reportReturns.findIndex(x => x["Name"] == name);
 
-    setSubmitting(true);
+    setStatus({
+      submitting: true,
+      error: null,
+      success: false,
+    });
 
     const report = {
       ...reportReturns[indexOfReport],
@@ -106,22 +112,23 @@ const App = () => {
     if (typeof google == 'undefined') {
       submitLMReportSuccess(
         report,
-        setSubmitting,
+        setStatus,
       )();
     } else {
       saveReport(
         report,
         submitLMReportSuccess(
           report,
-          setSubmitting,
+          setStatus,
         ),
+        submitLMReportError(setStatus)       
       )
     }
   }
 
   const submitLMReportSuccess = (
     report,
-    setSubmitting
+    setStatus
   ) => () => {
     const indexOfReport = reportReturns.findIndex(x => x["Name"] == report["Name"]);
 
@@ -134,7 +141,21 @@ const App = () => {
       ...reportReturns.slice(indexOfReport + 1, reportReturns.length),
     ]);
 
-    setSubmitting(false);
+    setStatus({
+      submitting: false,
+      error: false,
+      success: true,
+    })
+  }
+
+  const submitLMReportError = (
+    setStatus
+  ) => (err) => {
+    setStatus({
+      submitting: false,
+      error: err,
+      success: false,
+    })
   }
 
   const onSubmitSpecialismSpecificationForm = ({
@@ -203,14 +224,17 @@ const App = () => {
         "Completed": toValidate ? "Yes" : "No",
       }
 
-      navigate('/submitting')
-
-      // dev mode
-      if (typeof google == 'undefined') {
-        saveDataSuccess(null, { onSubmit });
-      } else {
-        saveData(params, onSubmit);
+      if (toValidate) {
+        navigate('/submitting')
+      } else {  
+        navigate('/saving')
       }
+
+      // if (typeof google == 'undefined') {
+      //   saveDataSuccess(null, { onSubmit });
+      // } else {
+      //   saveData(params, onSubmit);
+      // }
     }
   }
 
@@ -258,6 +282,7 @@ const App = () => {
                 setSavedSkills,
                 errors,
                 onSubmit,
+                validated,
               }
             }
           />
@@ -279,6 +304,10 @@ const App = () => {
           children: <SubmitReturn />
         },
         {
+          path: "/saving",
+          children: <SaveReturn />
+        },
+        {
           path: "/previous-years",
           pageText: pageText["previous"],
           children: <PreviousYears {...{ ...previousSubmits }} />
@@ -293,7 +322,7 @@ const App = () => {
         children
       }) => <Route key={path} {...{ path }}
         element={
-            <Page {...{...pageText, completed, validated}}>
+            <Page {...{...pageText, completed, validated, loaded}}>
               {
                 children
               }

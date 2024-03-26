@@ -87,42 +87,39 @@ const SkillsForm = ({
                 <Paragraph>{`Your ${SkillNameFILTER} self assessment`}</Paragraph>
               </>
 
-                <Label>
-                  <LabelText>
-                    Select a score
-                  </LabelText>
-                  <Select input={{
-                      value: localSavedSkills[SkillNameFILTER] &&
-                      localSavedSkills[SkillNameFILTER]["Score"] || "",
-                       onChange: (e) => setLocalSavedSkills(
-                        updateSavedSkills(
-                          localSavedSkills,
-                          SkillNameFILTER,
-                          "Score",
-                          e.target.value,
-                        )
-                      ),
-                      className: "govuk-!-margin-bottom-3",
-                      id: `${SkillNameFILTER.replace(/\s/g, '')}-Score`
-                    }}
-                    meta={{
-                      touched: true,
-                      error: errors[SkillNameFILTER] && errors[SkillNameFILTER]["Score"]
-                    }}
-                  >
-                    <option value="">Select a score</option>
-                    <option value="0">0. None / Not applicable</option>
-                    <option value="1">1. Working towards this level</option>
-                    <option value="2">2. Working at this level</option>
-                    <option value="3">3. Working above this level</option>
-                  </Select>
-                </Label>
+                <Select input={{
+                    arialabelledby: 'select-score-label',
+                    value: localSavedSkills[SkillNameFILTER] &&
+                    localSavedSkills[SkillNameFILTER]["Score"] || "",
+                     onChange: (e) => setLocalSavedSkills(
+                      updateSavedSkills(
+                        localSavedSkills,
+                        SkillNameFILTER,
+                        "Score",
+                        e.target.value,
+                      )
+                    ),
+                    className: "govuk-!-margin-bottom-3",
+                    id: `${SkillNameFILTER.replace(/\s/g, '')}-Score`
+                  }}
+                  label={'Select a score'}
+                  meta={{
+                    touched: true,
+                    error: errors[SkillNameFILTER] && errors[SkillNameFILTER]["Score"]
+                  }}
+                >
+                  <option value="">Select a score</option>
+                  <option value="0">0. None / Not applicable</option>
+                  <option value="1">1. Working towards this level</option>
+                  <option value="2">2. Working at this level</option>
+                  <option value="3">3. Working above this level</option>
+                </Select>
 
                 <LimitTextArea
                   id={`${SkillNameFILTER.replace(/\s/g, '')}-Evidence`}
                   error={errors[SkillNameFILTER] && errors[SkillNameFILTER]["Evidence"]}
                   label={"Example(s) that support this"}
-                  limit={3000}
+                  limit={5000}
                   onChange={(e) => setLocalSavedSkills({
                     ...localSavedSkills,
                     [SkillNameFILTER]: {
@@ -133,24 +130,6 @@ const SkillsForm = ({
                   value={
                     localSavedSkills[SkillNameFILTER] &&
                       localSavedSkills[SkillNameFILTER]["Evidence"] || ""
-                  }
-                />
-
-                <LimitTextArea
-                  id={`${SkillNameFILTER.replace(/\s/g, '')}-Comments`}
-                  error={errors[SkillNameFILTER] && errors[SkillNameFILTER]["Comments"]}
-                  label={"Comments"}
-                  limit={3000}
-                  onChange={(e) => setLocalSavedSkills({
-                    ...localSavedSkills,
-                    [SkillNameFILTER]: {
-                      ...localSavedSkills[SkillNameFILTER],
-                      ["Comments"]: e.target.value,
-                    }
-                  })}
-                  value={
-                    localSavedSkills[SkillNameFILTER] &&
-                      localSavedSkills[SkillNameFILTER]["Comments"] || ""
                   }
                 />
             </Fieldset>)
@@ -172,6 +151,7 @@ const SkillsForm = ({
           </Button>
 
           <Button
+            id="submit-for-validation-button"
             onClick={(e) => {
               e.preventDefault();
               onSubmit({

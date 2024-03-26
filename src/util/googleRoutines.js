@@ -28,6 +28,7 @@ export const processData = (d, dict) => {
     setCompleted,
     setValidated,
     setPreviousSubmits,
+    setLoaded,
     navigate,
   } = dict;
 
@@ -44,6 +45,8 @@ export const processData = (d, dict) => {
   setRoleLevel(returns[0]["RoleLevel"] || "");
 
   setSavedSkills(jsonParser(returns[0]["Skills"]));
+
+  setLoaded(Object.keys(jsonParser(returns[0]["Skills"])));
 
   setLmEmail(returns[0]["LMEmail"]);
 
@@ -96,11 +99,12 @@ export const saveReportSuccess = (returnVal, { onSubmit }) => {
   onSubmit();
 }
 
-export const saveReport = (report, saveDataSuccess) => google.script
+export const saveReport = (report, saveDataSuccess, saveDataFailure) => google.script
   .run
   .withSuccessHandler(saveReportSuccess)
   .withFailureHandler((err) => {
-    console.log(err)
+    console.log(err);
+    saveDataFailure(err);
   })  
   .withUserObject({ onSubmit: saveDataSuccess })
   .lmValidate(report["Name"], report);

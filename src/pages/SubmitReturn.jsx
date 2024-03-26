@@ -1,18 +1,5 @@
-import {
-  Spinner
-} from 'govuk-react';
+import { SpinnerText } from './../components';
 
-const SubmitReturn = () => <div className="govuk-grid-row">
-  <div className="govuk-grid-column-one-third">
-    <Spinner
-      fill="black"
-      height="50px"
-      width="50px"
-    />
-  </div>
-  <div className="govuk-grid-column-two-thirds">
-    <h1>Submitting your return, please wait...</h1>
-  </div>
-</div>
+const SubmitReturn = () => <SpinnerText text={"Submitting your return, please wait..."} />
 
 export default SubmitReturn;

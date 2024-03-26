@@ -13,7 +13,7 @@ const LimitTextArea = ({
     className={"govuk-!-margin-bottom-3"}
   >
     <TextArea
-      hint="No more than 3000 characters"
+      hint={`No more than ${limit} characters`}
       input={{
         onChange,
         value,
