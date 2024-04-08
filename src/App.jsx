@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import { Page } from './components';
-import { 
+import {
   Validate,
   PreviousYears,
   SubmitReturn,
@@ -121,7 +121,7 @@ const App = () => {
           report,
           setStatus,
         ),
-        submitLMReportError(setStatus)       
+        submitLMReportError(setStatus)
       )
     }
   }
@@ -169,7 +169,6 @@ const App = () => {
       (localRole !== role) ||
       (localRoleLevel !== roleLevel)
     ) {
-      // don't persist old errors if user switches specialism...
       setErrors({});
 
       setRole(localRole);
@@ -227,7 +226,7 @@ const App = () => {
 
       if (toValidate) {
         navigate('/submitting')
-      } else {  
+      } else {
         navigate('/saving')
       }
 

@@ -116,6 +116,7 @@ const SpecialismSpecificationForm = ({
           disabled={
             !(
               localJobFam.length &&
+              validateEmail(localLmEmail) && 
               allRoles.find(x => x == localRole) &&
               allRoleLevels.find(y => y == localRoleLevel)
             )
@@ -130,11 +131,6 @@ const SpecialismSpecificationForm = ({
                 localRoleLevel,
                 localLmEmail: localLmEmail.toLowerCase(),
               });
-            } else {
-              setErrors([{
-                target: 'lm-field',
-                text: "Please enter a valid line manager email"
-              }]);
             }
           }}
         >
