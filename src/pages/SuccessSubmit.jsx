@@ -3,19 +3,23 @@ import { Link } from 'react-router-dom';
 import { classifyScore } from './../util';
 
 const SuccessSubmit = ({
-  validated,
+  completed,
   savedSkills,
 }) => <>
     <Panel
       title={
-        !validated ?
+        !completed ?
           "Form Saved Successfully" : "Form Submitted for Validation"
       }
     >
     Your provisional score is {classifyScore(savedSkills)}
     <br/><br/>
   </Panel>
-  <Link to="/submit-skills">Click here to edit your submission</Link>
+  <div
+    className='link-edit-container'
+  >
+    <Link className="govuk-link link-edit" to="/submit-skills">Click here to edit your submission</Link>
+  </div>
 </>
 
 export default SuccessSubmit;

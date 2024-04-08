@@ -221,7 +221,8 @@ const App = () => {
         "RoleLevel": roleLevel,
         "LMEmail": lmEmail,
         "Skills": localSavedSkills,
-        "Completed": toValidate ? "Yes" : "No",
+        // don't overwrite already existing Completed field...
+        "Completed": completed != "Yes" ? (toValidate ? "Yes" : "No") : completed,
       }
 
       if (toValidate) {
@@ -314,7 +315,7 @@ const App = () => {
         },
         {
           path: "/success-submit",
-          children: <SuccessSubmit {...{ validated, savedSkills }} />
+          children: <SuccessSubmit {...{ completed, savedSkills }} />
         }
       ].map(({
         path,
