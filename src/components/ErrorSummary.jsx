@@ -8,7 +8,7 @@ const ErrorSummary = ({ errors }) => {
       errorRef.current.scrollIntoView();
       errorRef.current.focus();  
     }
-  }, errorRef)
+  }, [errorRef])
 
   return (<div ref={errorRef} className="govuk-error-summary" data-module="govuk-error-summary">
     <div role="alert">
@@ -18,7 +18,9 @@ const ErrorSummary = ({ errors }) => {
       <div className="govuk-error-summary__body">
         <ul className="govuk-list govuk-error-summary__list">
           {
-            errors.map(({ targetName, text }) => <li>
+            errors.map(({ targetName, text }) => <li
+              key={targetName}
+            >
               <a href={`#${targetName}`}>{text}</a>
             </li>)
           }
