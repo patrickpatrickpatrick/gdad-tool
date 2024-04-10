@@ -21,7 +21,6 @@ import {
 import { pageText } from './constants';
 
 import {
-  processData,
   getData,
   saveData,
   saveReport,
@@ -29,6 +28,7 @@ import {
   devGoogle,
   classifyScore,
   saveDataSuccess,
+  calcAvg,
 } from './util';
 
 const App = () => {
@@ -38,7 +38,6 @@ const App = () => {
   const [framework, setFramework] = useState([])
   const [skills, setSkills] = useState([]);
   const [completed, setCompleted] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [specialism, setSpecialism] = useState(null);
   const [jobFam, setJobFam] = useState("");
   const [role, setRole] = useState("");
@@ -215,6 +214,10 @@ const App = () => {
     } else {
       setSavedSkills(localSavedSkills);
 
+      const scores = Object.keys(savedSkills).map(
+        skill => parseInt(savedSkills[skill]["Score"])
+      )
+
       const onSubmit = onSuccess(toValidate);
       const params = {
         "JobFamily": jobFam,
@@ -222,9 +225,13 @@ const App = () => {
         "RoleLevel": roleLevel,
         "LMEmail": lmEmail,
         "Skills": localSavedSkills,
+        "ActualScore": calcAvg(scores),
+        "WorkingLevel": classifyScore(localSavedSkills),
         // don't overwrite already existing Completed field...
         "Completed": completed != "Yes" ? (toValidate ? "Yes" : "No") : completed,
       }
+
+      console.log(params)
 
       if (toValidate) {
         navigate('/submitting')

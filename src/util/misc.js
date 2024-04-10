@@ -10,12 +10,14 @@ export const getNameFromEmail = email => email.match(/(.*)@.*/)[1]
 export const getUniqElements = (arr, attribute) =>
   Array.from(new Set(arr.map(item => item[attribute])));
 
+export const calcAvg = scores => scores.reduce((acc, s) => s + acc, 0) / scores.filter(x => x != 0).length
+
 export const classifyScore = (savedSkills) => {
   const scores = Object.keys(savedSkills).map(
     skill => parseInt(savedSkills[skill]["Score"])
   )
   
-  const score = scores.reduce((acc, s) => s + acc, 0) / scores.length;
+  const score = calcAvg(scores);
 
   switch(true){
     case score < 1:
@@ -28,7 +30,7 @@ export const classifyScore = (savedSkills) => {
       return "Proficient B";
     case score < 3:
       return "Accomplished A";
-    case score === 3:
+    case score == 3:
       return "Accomplished B";
     default:
       return "";
