@@ -57,6 +57,8 @@ const App = () => {
     navigate("/success-submit");
     if (toValidate) {
       setCompleted(true);
+    } else {
+      setLoaded(true);
     }
   }
 

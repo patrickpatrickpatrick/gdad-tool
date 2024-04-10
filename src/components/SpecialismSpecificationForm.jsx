@@ -123,12 +123,7 @@ const SpecialismSpecificationForm = ({
             )
           }
           onClick={(e) => {
-
             e.preventDefault();
-
-            console.log(localLmEmail)
-
-            console.log(validateEmail(localLmEmail))
 
             if (validateEmail(localLmEmail)) {
               setErrors(null);
