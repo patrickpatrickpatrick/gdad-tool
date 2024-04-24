@@ -214,8 +214,8 @@ const App = () => {
     } else {
       setSavedSkills(localSavedSkills);
 
-      const scores = Object.keys(savedSkills).map(
-        skill => parseInt(savedSkills[skill]["Score"])
+      const scores = Object.keys(localSavedSkills).map(
+        skill => parseInt(localSavedSkills[skill]["Score"])
       )
 
       const onSubmit = onSuccess(toValidate);
