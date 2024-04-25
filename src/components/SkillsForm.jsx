@@ -55,6 +55,9 @@ const SkillsForm = ({
             `You have currently selected ${roleLevel} as your role level.`
           }
         </Paragraph>
+        <p>
+          The skill descriptions listed below are a summary of each of the skills required for this role. Find your role in the <a href="https://ddat-capability-framework.service.gov.uk/">Digital and Data Framework</a> (for example Associate Delivery Manager) to identify the specific skill descriptions required for your level. Your evidence should be based on those descriptions.
+        </p>
 
         <BackLink
           href="#"
@@ -161,7 +164,7 @@ const SkillsForm = ({
             }}
           >
             Submit for validation
-          </Button> 
+          </Button>
         </form>
       </div>
     </div>
