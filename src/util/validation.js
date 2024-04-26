@@ -14,6 +14,9 @@ export const validateInput = (input, skills, limit) => {
   let tempErrors = {}
 
   skills.map(({ SkillNameFILTER }) => {
+
+    console.log(input[SkillNameFILTER])
+
     if (!input[SkillNameFILTER]["Score"].length) {
       tempErrors = {
         ...tempErrors,
@@ -24,17 +27,17 @@ export const validateInput = (input, skills, limit) => {
       }
     }
 
-    if (input[SkillNameFILTER]["Comments"].length > limit) {
-      tempErrors = {
-        ...tempErrors,
-        [SkillNameFILTER]: {
-          ...tempErrors[SkillNameFILTER],
-          ["Comments"]: `Please reduce comments to ${limit} or less characters`
-        }
-      }
-    }
+    // if (input[SkillNameFILTER]["Comments"].length > limit) {
+    //   tempErrors = {
+    //     ...tempErrors,
+    //     [SkillNameFILTER]: {
+    //       ...tempErrors[SkillNameFILTER],
+    //       ["Comments"]: `Please reduce comments to ${limit} or less characters`
+    //     }
+    //   }
+    // }
 
-    if (input[SkillNameFILTER]["Evidence"].length > limit) {
+    if (input[SkillNameFILTER]["Evidence"] && input[SkillNameFILTER]["Evidence"].length > limit) {
       tempErrors = {
         ...tempErrors,
         [SkillNameFILTER]: {
