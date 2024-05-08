@@ -13,7 +13,7 @@ import {
 } from 'govuk-react';
 import { useRef, useEffect } from 'react';
 
-const nameToId = name => name.replace(/\@|\./g, '')
+const nameToId = name => name.replace(/\'|\@|\./g, '')
 
 const Summary = ({ Completed, LineManagerApproved, Name, index }) => <div>
   <span
