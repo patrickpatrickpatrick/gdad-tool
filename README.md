@@ -1,10 +1,12 @@
 # Self-Assessment Tool for Government Digital and Data Profession Capability Framework
 
-⚠️⚠️⚠️ This project was developed in a very short time-frame and the code quality will probably reflect that!! ⚠️⚠️⚠️
+⚠️⚠️ This project was developed in a very short timeframe and the code quality will probably reflect that!! ⚠️⚠️
 
 This React + Vite application was developed for staff self-assessment using the [Government Digital and Data Profession Capability Framework](https://ddat-capability-framework.service.gov.uk/).
 
 The user chooses their discipline and then reviews how well they've performed at the relevant skills by setting a score them and by providing evidence. They can then 'Save' their submission or 'Submit' their submission (which marks it as ready to be reviewed by their line-manager).
+
+If the user has previously submitted self-assessments the years prior, they can view them in the 'Previous Submissions'.
 
 The line-manager of the user can then review and approve their self-assessment.
 
