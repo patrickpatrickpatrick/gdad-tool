@@ -5,11 +5,14 @@ import { GlobalStyle } from 'govuk-react'
 import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const root = document.getElementById('root');
+const routePrefix = root.getAttribute('data-route-prefix');
+
+ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <GlobalStyle />
-    <Router>
-      <App />
+    <Router basename={routePrefix || ""}>
+      <App routePrefix={routePrefix} />
     </Router>
   </React.StrictMode>,
 )

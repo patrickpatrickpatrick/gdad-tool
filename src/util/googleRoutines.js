@@ -30,6 +30,7 @@ export const processData = (d, dict) => {
     setPreviousSubmits,
     setLoaded,
     navigate,
+    routePrefix,
   } = dict;
 
   setFramework(framework);
@@ -74,9 +75,9 @@ export const processData = (d, dict) => {
   setValidated(returns[0]["LineManagerApproved"] == 'Yes')
 
   if (returns[0]["RoleLevel"]) {
-    navigate('/submit-skills');
+    navigate(`/submit-skills`);
   } else {
-    navigate('/submit-specialism');
+    navigate(`/submit-specialism`);
   }
   
   setPreviousSubmits({

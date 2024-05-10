@@ -31,7 +31,9 @@ import {
   calcAvg,
 } from './util';
 
-const App = () => {
+const App = ({
+  routePrefix
+}) => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
@@ -53,7 +55,7 @@ const App = () => {
   const [errors, setErrors] = useState({});
 
   const onSuccess = toValidate => () => {
-    navigate("/success-submit");
+    navigate(`/success-submit`);
     if (toValidate) {
       setCompleted(true);
     } else {
@@ -62,7 +64,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    navigate("/")
+    navigate(`/`);
 
     const parameters = {
       setFramework,
@@ -80,6 +82,7 @@ const App = () => {
       setPreviousSubmits,
       setLoaded,
       navigate,
+      routePrefix,
     }
 
     if (typeof google !== 'undefined') {
@@ -231,12 +234,10 @@ const App = () => {
         "Completed": completed != "Yes" ? (toValidate ? "Yes" : "No") : completed,
       }
 
-      console.log(params)
-
       if (toValidate) {
-        navigate('/submitting')
+        navigate(`/submitting`);
       } else {
-        navigate('/saving')
+        navigate(`/saving`);
       }
 
       if (typeof google == 'undefined') {
@@ -329,7 +330,7 @@ const App = () => {
         path,
         pageText,
         children
-      }) => <Route key={path} {...{ path }}
+      }) => <Route key={path} path={path}
         element={
             <Page {...{...pageText, completed, validated, loaded}}>
               {

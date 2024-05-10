@@ -16,7 +16,8 @@ const SpecialismSpecificationForm = ({
   validated,
   lmEmail,
   onSubmit,
-  setErrors
+  setErrors,
+  routePrefix,
 }) => {
   const navigate = useNavigate();
 
