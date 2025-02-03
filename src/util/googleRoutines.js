@@ -12,7 +12,7 @@ function jsonParser(str) {
 }
 
 export const processData = (d, dict) => {
-  let { returns, framework, reportReturns, returns22, returns23, } = JSON.parse(d);
+  let { returns, framework, reportReturns, returns22, returns23, returns24 } = JSON.parse(d);
 
   let {
     setFramework,
@@ -79,16 +79,20 @@ export const processData = (d, dict) => {
   } else {
     navigate(`/submit-specialism`);
   }
-  
+
   setPreviousSubmits({
     returns22: {
       ...returns22[0],
-      Skills: returns22[0] && jsonParser(returns22[0]["Skills"]), 
+      Skills: returns22[0] && jsonParser(returns22[0]["Skills"]),
     },
     returns23: {
       ...returns23[0],
-      Skills: returns23[0] && jsonParser(returns23[0]["Skills"]), 
-    }
+      Skills: returns23[0] && jsonParser(returns23[0]["Skills"]),
+    },
+    returns24: {
+      ...returns24[0],
+      Skills: returns24[0] && jsonParser(returns24[0]["Skills"]),
+    },
   })
 }
 
@@ -106,7 +110,7 @@ export const saveReport = (report, saveDataSuccess, saveDataFailure) => google.s
   .withFailureHandler((err) => {
     console.log(err);
     saveDataFailure(err);
-  })  
+  })
   .withUserObject({ onSubmit: saveDataSuccess })
   .lmValidate(report["Name"], report);
 
@@ -115,7 +119,7 @@ export const getData = userObject => google.script
   .withSuccessHandler(processData)
   .withFailureHandler((err) => {
     console.log(err)
-  })  
+  })
   .withUserObject(userObject)
   .getData();
 
