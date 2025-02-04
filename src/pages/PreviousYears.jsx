@@ -4,11 +4,16 @@ import { useRef } from 'react';
 
 const PreviousYears = ({
   returns22,
-  returns23
+  returns23,
+  returns24,
 }) => {
   const accordionRef = useRef();
 
   let items = [
+    {
+      heading: "Submission for 2024",
+      ...returns24
+    },
     {
       heading: "Submission for 2023",
       ...returns23

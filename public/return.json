@@ -1,5 +1,6 @@
 {
-    "returns": [
+    "returns":
+    [
         {
             "Name": "place.holder@email.com",
             "JobFamily": "",
@@ -12,7 +13,23 @@
             "LMEmail": "place.holder@email.com"
         }
     ],
-    "returns22": [        {
+    "returns24":
+    [
+        {
+            "Name": "place.holder@email.com",
+            "JobFamily": "Technical",
+            "Role": "Frontend developer",
+            "RoleLevel": "Frontend developer",
+            "Skills": "{\"Problem management\":{\"Evidence\":\"Lorem ipsum dolor\\n sit amet, consectetur adipiscing elit. Aliquam facilisis blandit convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam sed eros id neque pharetra semper. In sapien turpis, blandit a ex sit amet, bibendum dictum nisi. Vestibulum hendrerit massa in dolor pharetra sodales. In lobortis sagittis lorem. Proin pharetra mattis sapien, vel convallis diam luctus vitae. Aenean nisl justo, porttitor vel condimentum vitae, congue id erat. Duis vitae consequat metus. Curabitur eget mauris tincidunt, ullamcorper risus ac, fermentum risus. Sed commodo ac purus eu commodo. Proin vel nunc a urna eleifend tempus at non dolor. Ut porta ac urna mattis bibendum. Vestibulum sed pretium felis. Curabitur convallis fringilla finibus.\",\"Comments\":\"\",\"Score\":\"2\"},\"User focus\":{\"Score\":\"3\",\"Evidence\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis blandit convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam sed eros id neque pharetra semper. In sapien turpis, blandit a ex sit amet, bibendum dictum nisi. Vestibulum hendrerit massa in dolor pharetra sodales. In lobortis sagittis lorem. Proin pharetra mattis sapien, vel convallis diam luctus vitae. Aenean nisl justo, porttitor vel condimentum vitae, congue id erat. Duis vitae consequat metus. Curabitur eget mauris tincidunt, ullamcorper risus ac, fermentum risus. Sed commodo ac purus eu commodo. Proin vel nunc a urna eleifend tempus at non dolor. Ut porta ac urna mattis bibendum. Vestibulum sed pretium felis. Curabitur convallis fringilla finibus.\",\"Comments\":\"\"},\"Incident management\":{\"Score\":\"3\",\"Comments\":\"\",\"Evidence\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis blandit convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam sed eros id neque pharetra semper. In sapien turpis, blandit a ex sit amet, bibendum dictum nisi. Vestibulum hendrerit massa in dolor pharetra sodales. In lobortis sagittis lorem. Proin pharetra mattis sapien, vel convallis diam luctus vitae. Aenean nisl justo, porttitor vel condimentum vitae, congue id erat. Duis vitae consequat metus. Curabitur eget mauris tincidunt, ullamcorper risus ac, fermentum risus. Sed commodo ac purus eu commodo. Proin vel nunc a urna eleifend tempus at non dolor. Ut porta ac urna mattis bibendum. Vestibulum sed pretium felis. Curabitur convallis fringilla finibus.\"},\"Ownership and initiative\":{\"Comments\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis blandit convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam sed eros id neque pharetra semper. In sapien turpis, blandit a ex sit amet, bibendum dictum nisi. Vestibulum hendrerit massa in dolor pharetra sodales. In lobortis sagittis lorem. Proin pharetra mattis sapien, vel convallis diam luctus vitae. Aenean nisl justo, porttitor vel condimentum vitae, congue id erat. Duis vitae consequat metus. Curabitur eget mauris tincidunt, ullamcorper risus ac, fermentum risus. Sed commodo ac purus eu commodo. Proin vel nunc a urna eleifend tempus at non dolor. Ut porta ac urna mattis bibendum. Vestibulum sed pretium felis. Curabitur convallis fringilla finibus.\",\"Evidence\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis blandit convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam sed eros id neque pharetra semper. In sapien turpis, blandit a ex sit amet, bibendum dictum nisi. Vestibulum hendrerit massa in dolor pharetra sodales. In lobortis sagittis lorem. Proin pharetra mattis sapien, vel convallis diam luctus vitae. Aenean nisl justo, porttitor vel condimentum vitae, congue id erat. Duis vitae consequat metus. Curabitur eget mauris tincidunt, ullamcorper risus ac, fermentum risus. Sed commodo ac purus eu commodo. Proin vel nunc a urna eleifend tempus at non dolor. Ut porta ac urna mattis bibendum. Vestibulum sed pretium felis. Curabitur convallis fringilla finibus.\",\"Score\":\"2\"}}",
+            "LineManagerApproved": "No",
+            "PassedProbation": "No",
+            "Completed": "Yes",
+            "LMEmail": "place.holder@email.com"
+        }
+    ],
+    "returns22":
+    [
+        {
             "Name": "place.holder@email.com",
             "JobFamily": "Technical",
             "Role": "Frontend developer",
@@ -22,8 +39,11 @@
             "PassedProbation": "No",
             "Completed": "Yes",
             "LMEmail": "place.holder@email.com"
-        }],
-    "returns23": [        {
+        }
+    ],
+    "returns23":
+    [
+        {
             "Name": "place.holder@email.com",
             "JobFamily": "Technical",
             "Role": "Frontend developer",
@@ -33,8 +53,10 @@
             "PassedProbation": "No",
             "Completed": "Yes",
             "LMEmail": "place.holder@email.com"
-        }],
-    "reportReturns": [
+        }
+    ],
+    "reportReturns":
+    [
         {
             "Name": "line.report@email.com",
             "JobFamily": "Technical",
@@ -47,138 +69,139 @@
             "LMEmail": "place.holder@email.com"
         }
     ],
-    "framework": [
-    {
-        "JobfamilyFILTER": "Technical",
-        "RoleFILTER": "Frontend developer",
-        "RoleLevelFILTER": "Frontend developer",
-        "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
-        "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
-        "SkillNameFILTER": "Accessibility",
-        "SkillDescription": "You are able to create accessible user interfaces that put user needs first. You test components and pages against accessibility standards.",
-        "SkillLevel": "Practitioner",
-        "SkillLevelDescription": "You are able to build user interfaces that meet a predefined set of standards. You champion accessibility to internal stakeholders. You are able to offer design feedback to mitigate risk of failing accessibility testing. You can offer recommendations on the best tools and methods to be used when accessibility testing."
-    },
-    {
-        "JobfamilyFILTER": "Technical",
-        "RoleFILTER": "Frontend developer",
-        "RoleLevelFILTER": "Frontend developer",
-        "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
-        "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
-        "SkillNameFILTER": "Community collaboration (Frontend developer)",
-        "SkillDescription": "You contribute to the work of others while having the ability to build, motivate and empower teams. You create the right environment for teams to work in and are able to facilitate the best team makeup depending on the situation. You give and receive constructive feedback, facilitating the feedback loop. You recognise and deal with issues.",
-        "SkillLevel": "Practitioner",
-        "SkillLevelDescription": "You know how to work collaboratively within a group, actively networking with others and giving feedback at the appropriate time to make sure the discussion sticks. You can use your initiative to identify problems or issues in the team dynamic and rectify them. You can pull out issues through agile health-checks with the team to provoke the right responses."
-    },
-    {
-        "JobfamilyFILTER": "Technical",
-        "RoleFILTER": "Frontend developer",
-        "RoleLevelFILTER": "Frontend developer",
-        "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
-        "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
-        "SkillNameFILTER": "Communicating information",
-        "SkillDescription": "You are able to communicate effectively across organisational, technical and political boundaries. You know how to make complex and technical information and language simple and accessible for non-technical audiences. You collaborate effectively with others.",
-        "SkillLevel": "Practitioner",
-        "SkillLevelDescription": "You can work collaboratively in a group and build relationships with others. You are able to identify issues through agile health-checks and work with others to address them. You are able to manage stakeholder expectations. You can be flexible and you are capable of proactive and reactive communication. You are willing to facilitate difficult discussions within the team or with senior stakeholders."
-    },
-    {
-        "JobfamilyFILTER": "Technical",
-        "RoleFILTER": "Frontend developer",
-        "RoleLevelFILTER": "Frontend developer",
-        "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
-        "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
-        "SkillNameFILTER": "Leadership and guidance (Frontend developer)",
-        "SkillDescription": "You can interpret a vision to lead on decisions. You create a collaborative environment and maintain a good service. You can understand and resolve technical disputes across varying levels of complexity and risk. You can solve issues and unblock problems.",
-        "SkillLevel": "Practitioner",
-        "SkillLevelDescription": "You understand the impact of decisions and are able to make decisions characterised by different levels of risk and complexity. You are capable of resolving technical disputes between wider peers and indirect stakeholders, taking into account all views and opinions."
-    },
-    {
-        "JobfamilyFILTER": "Technical",
-        "RoleFILTER": "Frontend developer",
-        "RoleLevelFILTER": "Frontend developer",
-        "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
-        "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
-        "SkillNameFILTER": "Modern standards approach (Frontend developer)",
-        "SkillDescription": "You use a modern standards approach through development, automation and testing.",
-        "SkillLevel": "Practitioner",
-        "SkillLevelDescription": "You can competently use a modern standards approach and guide others to do so."
-    },
-    {
-        "JobfamilyFILTER": "Technical",
-        "RoleFILTER": "Frontend developer",
-        "RoleLevelFILTER": "Frontend developer",
-        "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
-        "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
-        "SkillNameFILTER": "Programming and build (Frontend developer)",
-        "SkillDescription": "You can use agreed standards and specifications to design, create, test and document new software or make changes to existing software.",
-        "SkillLevel": "Practitioner",
-        "SkillLevelDescription": "You collaborate with others when necessary to review specifications and use these agreed specifications to design, code, test and document user interfaces of medium to high complexity, using the right standards and tools."
-    },
-    {
-        "JobfamilyFILTER": "Technical",
-        "RoleFILTER": "Frontend developer",
-        "RoleLevelFILTER": "Frontend developer",
-        "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
-        "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
-        "SkillNameFILTER": "Prototyping",
-        "SkillDescription": "You can apply technical knowledge and experience to create or design workable prototypes, both programs and physical outputs. You understand parameters, restrictions and synergies.",
-        "SkillLevel": "Practitioner",
-        "SkillLevelDescription": "You see prototyping as a team activity, actively building prototypes and testing with others. You establish design patterns and iterate them. You know a variety of methods of prototyping and can choose the most appropriate ones."
-    },
-    {
-        "JobfamilyFILTER": "Technical",
-        "RoleFILTER": "Frontend developer",
-        "RoleLevelFILTER": "Frontend developer",
-        "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
-        "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
-        "SkillNameFILTER": "Strategic thinking (Frontend developer)",
-        "SkillDescription": "You have an overall perspective on business issues, events, activities and their wider implications and long-term impact. This could include determining patterns, standards, policies, roadmaps and vision statements. You focus on outcomes rather than solutions and activities.",
-        "SkillLevel": "Working",
-        "SkillLevelDescription": "You are able to work within a strategic context and communicate how activities meet strategic goals. You contribute to the development of strategy and policies."
-    },
-    {
-        "JobfamilyFILTER": "Technical",
-        "RoleFILTER": "Frontend developer",
-        "RoleLevelFILTER": "Frontend developer",
-        "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
-        "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
-        "SkillNameFILTER": "Systems design (Frontend developer)",
-        "SkillDescription": "You can design system components which meet business needs. You are good at solving problems and understanding technical and business complexity.",
-        "SkillLevel": "Working",
-        "SkillLevelDescription": "You can translate agreed designs into working user interfaces following modern standards. You can manage and document technical complexity to make sure work is easily maintained and reusable."
-    },
-    {
-        "JobfamilyFILTER": "Technical",
-        "RoleFILTER": "Frontend developer",
-        "RoleLevelFILTER": "Frontend developer",
-        "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
-        "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
-        "SkillNameFILTER": "Systems integration (Frontend developer)",
-        "SkillDescription": "You can integrate and test user interfaces, systems and programme components.",
-        "SkillLevel": "Working",
-        "SkillLevelDescription": "You can build static assets from source code and test the resulting user interface works as expected when delivered over the internet. You can work on integration tests and support configuration of the network part of the system as part of a wider team."
-    },
-    {
-        "JobfamilyFILTER": "Technical",
-        "RoleFILTER": "Frontend developer",
-        "RoleLevelFILTER": "Frontend developer",
-        "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
-        "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
-        "SkillNameFILTER": "User focus",
-        "SkillDescription": "You understand users and can identify who they are and what their needs are, based on evidence. You can translate user stories and propose design approaches or services to meet user needs and engage in meaningful interactions and relationships with users. You put users first. You can manage competing priorities.",
-        "SkillLevel": "Working",
-        "SkillLevelDescription": "You know how to collaborate with user researchers and interaction designers to represent user needs internally. You can champion user research to focus on all users. You can prioritise and define approaches to understand the user story, guiding others in doing so."
-    },
-    {
-        "JobfamilyFILTER": "Technical",
-        "RoleFILTER": "Frontend developer",
-        "RoleLevelFILTER": "Frontend developer",
-        "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
-        "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
-        "SkillNameFILTER": "Web Performance Optimisation",
-        "SkillDescription": "You understand how web performance can impact users. You are able to solve problems to improve performance. You use different sources of data to monitor and identify performance issues.",
-        "SkillLevel": "Working",
-        "SkillLevelDescription": "You are aware of the principles of web performance and how poor performance can negatively affect user experience. You support activities to improve web performance. You are able to identify and help resolve issues."
-    }
+    "framework":
+    [
+        {
+            "JobfamilyFILTER": "Technical",
+            "RoleFILTER": "Frontend developer",
+            "RoleLevelFILTER": "Frontend developer",
+            "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
+            "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
+            "SkillNameFILTER": "Accessibility",
+            "SkillDescription": "You are able to create accessible user interfaces that put user needs first. You test components and pages against accessibility standards.",
+            "SkillLevel": "Practitioner",
+            "SkillLevelDescription": "You are able to build user interfaces that meet a predefined set of standards. You champion accessibility to internal stakeholders. You are able to offer design feedback to mitigate risk of failing accessibility testing. You can offer recommendations on the best tools and methods to be used when accessibility testing."
+        },
+        {
+            "JobfamilyFILTER": "Technical",
+            "RoleFILTER": "Frontend developer",
+            "RoleLevelFILTER": "Frontend developer",
+            "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
+            "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
+            "SkillNameFILTER": "Community collaboration (Frontend developer)",
+            "SkillDescription": "You contribute to the work of others while having the ability to build, motivate and empower teams. You create the right environment for teams to work in and are able to facilitate the best team makeup depending on the situation. You give and receive constructive feedback, facilitating the feedback loop. You recognise and deal with issues.",
+            "SkillLevel": "Practitioner",
+            "SkillLevelDescription": "You know how to work collaboratively within a group, actively networking with others and giving feedback at the appropriate time to make sure the discussion sticks. You can use your initiative to identify problems or issues in the team dynamic and rectify them. You can pull out issues through agile health-checks with the team to provoke the right responses."
+        },
+        {
+            "JobfamilyFILTER": "Technical",
+            "RoleFILTER": "Frontend developer",
+            "RoleLevelFILTER": "Frontend developer",
+            "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
+            "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
+            "SkillNameFILTER": "Communicating information",
+            "SkillDescription": "You are able to communicate effectively across organisational, technical and political boundaries. You know how to make complex and technical information and language simple and accessible for non-technical audiences. You collaborate effectively with others.",
+            "SkillLevel": "Practitioner",
+            "SkillLevelDescription": "You can work collaboratively in a group and build relationships with others. You are able to identify issues through agile health-checks and work with others to address them. You are able to manage stakeholder expectations. You can be flexible and you are capable of proactive and reactive communication. You are willing to facilitate difficult discussions within the team or with senior stakeholders."
+        },
+        {
+            "JobfamilyFILTER": "Technical",
+            "RoleFILTER": "Frontend developer",
+            "RoleLevelFILTER": "Frontend developer",
+            "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
+            "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
+            "SkillNameFILTER": "Leadership and guidance (Frontend developer)",
+            "SkillDescription": "You can interpret a vision to lead on decisions. You create a collaborative environment and maintain a good service. You can understand and resolve technical disputes across varying levels of complexity and risk. You can solve issues and unblock problems.",
+            "SkillLevel": "Practitioner",
+            "SkillLevelDescription": "You understand the impact of decisions and are able to make decisions characterised by different levels of risk and complexity. You are capable of resolving technical disputes between wider peers and indirect stakeholders, taking into account all views and opinions."
+        },
+        {
+            "JobfamilyFILTER": "Technical",
+            "RoleFILTER": "Frontend developer",
+            "RoleLevelFILTER": "Frontend developer",
+            "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
+            "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
+            "SkillNameFILTER": "Modern standards approach (Frontend developer)",
+            "SkillDescription": "You use a modern standards approach through development, automation and testing.",
+            "SkillLevel": "Practitioner",
+            "SkillLevelDescription": "You can competently use a modern standards approach and guide others to do so."
+        },
+        {
+            "JobfamilyFILTER": "Technical",
+            "RoleFILTER": "Frontend developer",
+            "RoleLevelFILTER": "Frontend developer",
+            "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
+            "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
+            "SkillNameFILTER": "Programming and build (Frontend developer)",
+            "SkillDescription": "You can use agreed standards and specifications to design, create, test and document new software or make changes to existing software.",
+            "SkillLevel": "Practitioner",
+            "SkillLevelDescription": "You collaborate with others when necessary to review specifications and use these agreed specifications to design, code, test and document user interfaces of medium to high complexity, using the right standards and tools."
+        },
+        {
+            "JobfamilyFILTER": "Technical",
+            "RoleFILTER": "Frontend developer",
+            "RoleLevelFILTER": "Frontend developer",
+            "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
+            "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
+            "SkillNameFILTER": "Prototyping",
+            "SkillDescription": "You can apply technical knowledge and experience to create or design workable prototypes, both programs and physical outputs. You understand parameters, restrictions and synergies.",
+            "SkillLevel": "Practitioner",
+            "SkillLevelDescription": "You see prototyping as a team activity, actively building prototypes and testing with others. You establish design patterns and iterate them. You know a variety of methods of prototyping and can choose the most appropriate ones."
+        },
+        {
+            "JobfamilyFILTER": "Technical",
+            "RoleFILTER": "Frontend developer",
+            "RoleLevelFILTER": "Frontend developer",
+            "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
+            "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
+            "SkillNameFILTER": "Strategic thinking (Frontend developer)",
+            "SkillDescription": "You have an overall perspective on business issues, events, activities and their wider implications and long-term impact. This could include determining patterns, standards, policies, roadmaps and vision statements. You focus on outcomes rather than solutions and activities.",
+            "SkillLevel": "Working",
+            "SkillLevelDescription": "You are able to work within a strategic context and communicate how activities meet strategic goals. You contribute to the development of strategy and policies."
+        },
+        {
+            "JobfamilyFILTER": "Technical",
+            "RoleFILTER": "Frontend developer",
+            "RoleLevelFILTER": "Frontend developer",
+            "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
+            "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
+            "SkillNameFILTER": "Systems design (Frontend developer)",
+            "SkillDescription": "You can design system components which meet business needs. You are good at solving problems and understanding technical and business complexity.",
+            "SkillLevel": "Working",
+            "SkillLevelDescription": "You can translate agreed designs into working user interfaces following modern standards. You can manage and document technical complexity to make sure work is easily maintained and reusable."
+        },
+        {
+            "JobfamilyFILTER": "Technical",
+            "RoleFILTER": "Frontend developer",
+            "RoleLevelFILTER": "Frontend developer",
+            "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
+            "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
+            "SkillNameFILTER": "Systems integration (Frontend developer)",
+            "SkillDescription": "You can integrate and test user interfaces, systems and programme components.",
+            "SkillLevel": "Working",
+            "SkillLevelDescription": "You can build static assets from source code and test the resulting user interface works as expected when delivered over the internet. You can work on integration tests and support configuration of the network part of the system as part of a wider team."
+        },
+        {
+            "JobfamilyFILTER": "Technical",
+            "RoleFILTER": "Frontend developer",
+            "RoleLevelFILTER": "Frontend developer",
+            "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
+            "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
+            "SkillNameFILTER": "User focus",
+            "SkillDescription": "You understand users and can identify who they are and what their needs are, based on evidence. You can translate user stories and propose design approaches or services to meet user needs and engage in meaningful interactions and relationships with users. You put users first. You can manage competing priorities.",
+            "SkillLevel": "Working",
+            "SkillLevelDescription": "You know how to collaborate with user researchers and interaction designers to represent user needs internally. You can champion user research to focus on all users. You can prioritise and define approaches to understand the user story, guiding others in doing so."
+        },
+        {
+            "JobfamilyFILTER": "Technical",
+            "RoleFILTER": "Frontend developer",
+            "RoleLevelFILTER": "Frontend developer",
+            "RoleDescription": "A frontend developer designs, builds and improves website software that meets user needs. In this role, you will: \n- be responsible for writing clean, accessible code following a progressive enhancement approach\n- create code that is open by default and easy for others to reuse\n- design software which meets user needs and creates meaningful interactions and relationships with users\n- have an understanding of the three fundamental frontend technologies (HTML, CSS, and JavaScript)",
+            "SkillsTheyNeed": "A frontend developer builds software components, primarily in the form of user interfaces. In this role, you will: \n\n- collaborate and work closely with other disciplines to develop designs and working prototypes based on user needs and in support of organisational aims \n- develop software components that form part of a product to meet user needs \n- write clean, well-tested code that follows web standards\n- coach and mentor more junior colleagues\n",
+            "SkillNameFILTER": "Web Performance Optimisation",
+            "SkillDescription": "You understand how web performance can impact users. You are able to solve problems to improve performance. You use different sources of data to monitor and identify performance issues.",
+            "SkillLevel": "Working",
+            "SkillLevelDescription": "You are aware of the principles of web performance and how poor performance can negatively affect user experience. You support activities to improve web performance. You are able to identify and help resolve issues."
+        }
     ]
 }

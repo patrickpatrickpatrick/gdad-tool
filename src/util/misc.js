@@ -40,7 +40,7 @@ export const classifyScore = (savedSkills) => {
 export const devGoogle = (parameters) => {
   fetch('/return.json').then(
     response => response.json()
-  ).then(({ framework, returns, reportReturns, returns22, returns23 }) => {
-    processData(JSON.stringify({ framework, returns, reportReturns, returns22, returns23 }), parameters)
+  ).then((data) => {
+    processData(JSON.stringify(data), parameters)
   })
 }

@@ -61,7 +61,7 @@ const SkillsTable = ({
             <Table.CellHeader>
               Comments
             </Table.CellHeader>
-            <Table.Cell>
+            <Table.Cell style={{ whiteSpace: 'pre-line' }}>
               { Comments }
             </Table.Cell>
           </Table.Row>
@@ -70,7 +70,7 @@ const SkillsTable = ({
               <Table.CellHeader>
                 Evidence
               </Table.CellHeader>
-              <Table.Cell>
+              <Table.Cell style={{ whiteSpace: 'pre-line' }}>
                 { Evidence }
               </Table.Cell>
             </Table.Row>
